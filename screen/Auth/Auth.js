@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from "../splash_screen/splash_screen.js";
 import sign_in from "../sign_in/sign_in.js";
-
+import drawer from './drawer.js'
 var Stack = createNativeStackNavigator();
 var Tab = createBottomTabNavigator();
 
@@ -25,7 +25,7 @@ export default function app() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen component={Splash} name="splash_screen" />
-        <Stack.Screen component={Home} name="Home" />
+        <Stack.Screen component={drawer} name="Home" />
       </Stack.Navigator>
     </NavigationContainer>
   );
