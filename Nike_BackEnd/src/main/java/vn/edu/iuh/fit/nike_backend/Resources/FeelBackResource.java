@@ -12,7 +12,7 @@ import vn.edu.iuh.fit.nike_backend.respositories.ProductRepository;
 import vn.edu.iuh.fit.nike_backend.respositories.UserRepository;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:19006/")
+@CrossOrigin(origins = HostFrontEnd.host)
 @RestController
 @RequestMapping(value = "/feel_back",produces = {MediaType.APPLICATION_JSON_VALUE})
 public class FeelBackResource {

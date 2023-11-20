@@ -7,7 +7,7 @@ import vn.edu.iuh.fit.nike_backend.model.User;
 import vn.edu.iuh.fit.nike_backend.respositories.UserRepository;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:19006/")
+@CrossOrigin(origins = HostFrontEnd.host)
 @RestController
 @RequestMapping(value = "/user", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class UserResource {

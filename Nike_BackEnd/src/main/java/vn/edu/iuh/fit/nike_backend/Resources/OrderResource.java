@@ -7,7 +7,7 @@ import vn.edu.iuh.fit.nike_backend.model.Order;
 import vn.edu.iuh.fit.nike_backend.respositories.OrderRepository;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:19006/")
+@CrossOrigin(origins = HostFrontEnd.host)
 @RestController
 @RequestMapping(value = "/order" , produces = {MediaType.APPLICATION_JSON_VALUE})
 public class OrderResource {
