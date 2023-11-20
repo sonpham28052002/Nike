@@ -12,7 +12,14 @@
 	+ Drawer
 		npm install @react-navigation/drawer
 		expo install react-native-gesture-handler
-		
+		npm i react-native-reanimated@2.17.0
+		plugins: [
+			"@babel/plugin-proposal-export-namespace-from",
+			"react-native-reanimated/plugin",
+		],
+		npm start -- --reset-cache
+		npx expo install --fix 
+
 - Rating
 	+ npm i react-native-ratings
 - react native paper
