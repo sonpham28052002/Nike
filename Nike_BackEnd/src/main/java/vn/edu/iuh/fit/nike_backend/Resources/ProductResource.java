@@ -9,7 +9,7 @@ import vn.edu.iuh.fit.nike_backend.respositories.ProductRepository;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:19006/")
+@CrossOrigin(origins = "http://localhost:8081/")
 @RestController
 @RequestMapping(value = "/product", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class ProductResource {
