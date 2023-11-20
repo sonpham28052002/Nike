@@ -24,3 +24,5 @@
 	+ npm i react-native-ratings
 - react native paper
 	+ https://callstack.github.io/react-native-paper/docs/guides/getting-started
+- react-native-swiper-flatlist
+	+ npm i react-native-swiper-flatlist

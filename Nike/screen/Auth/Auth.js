@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Splash from "../splash_screen/splash_screen.js";
 import sign_in from "../sign_in/sign_in.js";
 import drawer from './drawer.js'
+import user from '../user/user.js'
 var Stack = createNativeStackNavigator();
 var Tab = createBottomTabNavigator();
 
@@ -26,6 +27,9 @@ export default function app() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen component={Splash} name="splash_screen" />
         <Stack.Screen component={drawer} name="Home" />
+        <Stack.Screen component={sign_in} name="signin" />
+        <Stack.Screen component={user} name="user" />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
