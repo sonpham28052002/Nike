@@ -2,10 +2,11 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { FlatList, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './style'
+import React from 'react';
 export default function shop() {
   const data = [{
-    name: 'name 1',
-    img: require('./assets/speed.jpg')
+    name: 'Sneakers of the Week',
+    img: require('./assets/sneakersOfTheWeek.png')
   },
   {
     name: 'name 2',
@@ -77,6 +78,11 @@ export default function shop() {
   }]
   const dataSearch = ['Dunk', 'AirForce 1', 'Air Jodan 1', 'Air Max', 'Blazer']
   const dataBrand = [require('./assets/brand1.png'), require('./assets/brand2.png'), require('./assets/brand3.png'), require('./assets/brand4.png'), require('./assets/brand5.png'), require('./assets/brand6.jpg')]
+  var [showNew, setShowNew] = React.useState(false)
+  var [showShoes, setShowShoes] = React.useState(false)
+  var [showClothing, setShowClothing] = React.useState(false)
+  var [showAccessories, setShowAccessories] = React.useState(false)
+  var [showSale, setShowSale] = React.useState(false)
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.item}>
@@ -88,10 +94,10 @@ export default function shop() {
             horizontal
             renderItem={({ item }) => {
               return (
-                <View style={{ marginRight: 10 }}>
+                <TouchableOpacity style={{ marginRight: 10, width: 110 }}>
                   <Image source={item.img} style={styles.imgSmall} />
                   <Text style={styles.textItem}>{item.name}</Text>
-                </View>
+                </TouchableOpacity>
               )
             }}
           />
@@ -118,26 +124,190 @@ export default function shop() {
       </View>
 
       <View style={styles.itemList}>
-        <TouchableOpacity style={styles.buttonList}>
-          <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>New & Featured</Text>
-          <Image source={require('./assets/newAndFeature.png')} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonList}>
-          <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Shoes</Text>
-          <Image source={require('./assets/newAndFeature.png')} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonList}>
-          <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Clothing</Text>
-          <Image source={require('./assets/newAndFeature.png')} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonList}>
-          <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Accessories</Text>
-          <Image source={require('./assets/newAndFeature.png')} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonList}>
-          <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Sale</Text>
-          <Image source={require('./assets/newAndFeature.png')} />
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.buttonList}
+            onPress={() => setShowNew(!showNew)}
+          >
+            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>New & Featured</Text>
+            <Image source={require('./assets/newAndFeature.png')} />
+          </TouchableOpacity>
+          {
+            showNew ?
+              <View style={styles.itemListChild}>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+              </View>
+              : null
+          }
+        </View>
+        <View>
+          <TouchableOpacity style={styles.buttonList}
+            onPress={() => {
+              setShowNew(false)
+              setShowShoes(!showShoes)
+              setShowClothing(false)
+              setShowAccessories(false)
+              setShowSale(false)
+            }}
+          >
+            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Shoes</Text>
+            <Image source={require('./assets/newAndFeature.png')} />
+          </TouchableOpacity>
+          {
+            showShoes ?
+              <View style={styles.itemListChild}>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+              </View>
+              : null
+          }
+        </View>
+        <View>
+          <TouchableOpacity style={styles.buttonList}
+            onPress={() => {
+              setShowNew(false)
+              setShowShoes(false)
+              setShowClothing(!showClothing)
+              setShowAccessories(false)
+              setShowSale(false)
+            }}
+          >
+            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Clothing</Text>
+            <Image source={require('./assets/newAndFeature.png')} />
+          </TouchableOpacity>
+          {
+            showClothing ?
+              <View style={styles.itemListChild}>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+              </View>
+              : null
+          }
+        </View>
+        <View>
+          <TouchableOpacity style={styles.buttonList}
+            onPress={() => {
+              setShowNew(false)
+              setShowShoes(false)
+              setShowClothing(false)
+              setShowAccessories(!showAccessories)
+              setShowSale(false)
+            }}
+          >
+            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Accessories</Text>
+            <Image source={require('./assets/newAndFeature.png')} />
+          </TouchableOpacity>
+          {
+            showAccessories ?
+              <View style={styles.itemListChild}>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+              </View>
+              : null
+          }
+        </View>
+        <View>
+          <TouchableOpacity style={styles.buttonList}
+            onPress={() => {
+              setShowNew(false)
+              setShowShoes(false)
+              setShowClothing(false)
+              setShowAccessories(false)
+              setShowSale(!showSale)
+            }}
+          >
+            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Sale</Text>
+            <Image source={require('./assets/newAndFeature.png')} />
+          </TouchableOpacity>
+          {
+            showSale ?
+              <View style={styles.itemListChild}>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonListChild}>
+                  <Text style={styles.textItem}>New Releases</Text>
+                </TouchableOpacity>
+              </View>
+              : null
+          }
+        </View>
       </View>
 
       <View style={styles.item}>
@@ -298,27 +468,27 @@ export default function shop() {
         </ScrollView>
       </View>
 
-      <View style={[styles.item, {marginBottom: 10}]}>
+      <View style={[styles.item, { marginBottom: 10 }]}>
         <Text style={styles.headerListItem}>Shop By Brand</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity style={{width: '33%', borderBottomWidth: 1, borderRightWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity style={{ width: '33%', borderBottomWidth: 1, borderRightWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={require('./assets/brand1.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
-          <TouchableOpacity style={{width: '33%', borderLeftWidth: 1, borderBottomWidth: 1, borderRightWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity style={{ width: '33%', borderLeftWidth: 1, borderBottomWidth: 1, borderRightWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={require('./assets/brand2.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
-          <TouchableOpacity style={{width: '33%', borderLeftWidth: 1, borderBottomWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity style={{ width: '33%', borderLeftWidth: 1, borderBottomWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={require('./assets/brand3.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity style={{width: '33%', borderRightWidth: 1, borderTopWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity style={{ width: '33%', borderRightWidth: 1, borderTopWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={require('./assets/brand4.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
-          <TouchableOpacity style={{width: '33%', borderTopWidth: 1, borderRightWidth: 1, borderLeftWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity style={{ width: '33%', borderTopWidth: 1, borderRightWidth: 1, borderLeftWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={require('./assets/brand5.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
-          <TouchableOpacity style={{width: '33%', borderLeftWidth: 1, borderTopWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity style={{ width: '33%', borderLeftWidth: 1, borderTopWidth: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={require('./assets/brand6.jpg')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
         </View>
