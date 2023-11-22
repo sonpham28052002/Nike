@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
     itemList: {
         marginTop: 30
     },
+    itemListChild:{
+        paddingHorizontal: 15
+    },
     buttonList: {
         flexDirection: 'row',
         width: '100%',
@@ -18,9 +21,16 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 35
     },
+    buttonListChild:{
+        borderBottomWidth: 1,
+        borderColor: 'gray',
+        height: 70,
+        justifyContent: 'center',
+        alignItems: 'flex-start'
+    },
     imgSmall: {
-        width: 100,
-        height: 100,
+        width: 110,
+        height: 110,
         borderRadius: 10
     },
     imgMedium: {
