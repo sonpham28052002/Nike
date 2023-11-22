@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Setter
 @EqualsAndHashCode
 public class FeedBack_ID implements Serializable {
-    private long id;
     private User user;
     private Product product;
 }
