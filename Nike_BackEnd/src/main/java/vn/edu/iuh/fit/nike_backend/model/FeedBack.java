@@ -8,14 +8,14 @@ import vn.edu.iuh.fit.nike_backend.ids.FeedBack_ID;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "feed_back")
+@Table(name = "feedback")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
 @IdClass(FeedBack_ID.class)
-public class Feedback {
+public class FeedBack {
     @Id
     @ManyToOne
     @JsonBackReference
