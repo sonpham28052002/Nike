@@ -57,8 +57,8 @@ public class Product {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
-    @Column(name = "feelback")
-    private List<Feelback> feelbacks;
+    @Column(name = "feedback")
+    private List<Feedback> feedbacks;
     @Override
     public String toString() {
         return "Product{" +
