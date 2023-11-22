@@ -29,21 +29,20 @@ public class FeedBackResource {
         return feedbackRepository.findAll();
     }
 
-    @GetMapping(value = "id={id}&user_id={user_id}&product_id={product_id}")
+    @GetMapping(value = "user_id={user_id}&product_id={product_id}")
     public Feedback getFeedback(@PathVariable long id, @PathVariable long user_id, @PathVariable long product_id){
         User user = userRepository.findById(user_id).get();
         Product product = productRepository.findById(product_id).get();
-        FeedBack_ID feelBackId =new FeedBack_ID(id,user,product);
+        FeedBack_ID feelBackId =new FeedBack_ID(user,product);
         return feedbackRepository.findById(feelBackId).get();
 
     }
-    @PutMapping(value = "id={id}&user_id={user_id}&product_id={product_id}")
-    public boolean insertFeelBack(@PathVariable long id,@PathVariable long user_id, @PathVariable long product_id , @RequestBody Feedback feedback){
+    @PutMapping(value = "user_id={user_id}&product_id={product_id}")
+    public boolean insertFeelBack(@PathVariable long user_id, @PathVariable long product_id , @RequestBody Feedback feedback){
         User user = userRepository.findById(user_id).get();
         Product product = productRepository.findById(product_id).get();
         feedback.setUser(user);
         feedback.setProduct(product);
-        feedback.setId(id);
         feedbackRepository.save(feedback);
         return true;
     }

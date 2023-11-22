@@ -4,9 +4,16 @@ import { styles } from "./style";
 import { HelperText } from "react-native-paper";
 import { CheckBox } from "@rneui/themed";
 export default function sign_in() {
-  var [email, setEmail] = React.useState("");
-  var [password, setPassword] = React.useState("");
+  var [email, setEmail] = React.useState(undefined);
+  var [password, setPassword] = React.useState(undefined);
+  var [checked, setCheck] = React.useState(false);
 
+  const hasErrorEmail = () => {
+    return email == undefined || email.includes("@");
+  };
+  const hasErrorPassword = () => {
+    return password == undefined || password.includes("@");
+  };
   return (
     <View style={styles.container}>
       <Image
@@ -22,7 +29,6 @@ export default function sign_in() {
       <View
         style={{
           marginTop: 20,
-          // height: 200,
           width: "100%",
           paddingHorizontal: 30,
         }}
@@ -34,7 +40,14 @@ export default function sign_in() {
           onChangeText={setEmail}
           placeholder="Email"
         />
-        <HelperText type="info">sdasđá</HelperText>
+        {hasErrorEmail() || (
+          <HelperText
+            style={{ marginTop: -10, fontWeight: "bold" }}
+            type="error"
+          >
+            Error: Phải là email!!!
+          </HelperText>
+        )}
 
         <TextInput
           style={[styles.TextInput]}
@@ -43,7 +56,23 @@ export default function sign_in() {
           onChangeText={setPassword}
           secureTextEntry
         />
-        <CheckBox checked title="Label" />
+        {hasErrorPassword() || (
+          <HelperText
+            style={{ marginTop: -10, fontWeight: "bold" }}
+            type="error"
+          >
+            Error: mật khẩu phải có ít nhất 6 ký tự và có cả số và chữ!!!
+          </HelperText>
+        )}
+        <View style={{marginTop:-10, backgroundColor:"red", flexDirection:"row"}}>
+        <CheckBox
+           checked={checked}
+           onPress={()=> setCheck(!checked)}
+           iconType="material-community"
+           checkedIcon="checkbox-outline"
+           uncheckedIcon={'checkbox-blank-outline'}
+         />
+        </View>
         <TouchableOpacity
           style={styles.Button}
           onPress={() => {

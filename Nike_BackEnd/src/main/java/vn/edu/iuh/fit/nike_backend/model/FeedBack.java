@@ -17,9 +17,6 @@ import java.time.LocalDate;
 @IdClass(FeedBack_ID.class)
 public class Feedback {
     @Id
-    private long id;
-
-    @Id
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "product_id")
