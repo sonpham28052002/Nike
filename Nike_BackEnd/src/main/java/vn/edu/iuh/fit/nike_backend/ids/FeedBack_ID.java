@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class FeelBack_ID implements Serializable {
+public class FeedBack_ID implements Serializable {
     private long id;
     private User user;
     private Product product;
