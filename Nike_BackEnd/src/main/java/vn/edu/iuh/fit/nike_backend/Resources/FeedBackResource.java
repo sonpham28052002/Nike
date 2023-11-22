@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.iuh.fit.nike_backend.ids.FeedBack_ID;
-import vn.edu.iuh.fit.nike_backend.model.Feedback;
+import vn.edu.iuh.fit.nike_backend.model.FeedBack;
 import vn.edu.iuh.fit.nike_backend.model.Product;
 import vn.edu.iuh.fit.nike_backend.model.User;
 import vn.edu.iuh.fit.nike_backend.respositories.FeedbackRepository;
@@ -25,12 +25,12 @@ public class FeedBackResource {
     @Autowired
     private UserRepository userRepository;
     @GetMapping
-    public List<Feedback> getAll(){
+    public List<FeedBack> getAll(){
         return feedbackRepository.findAll();
     }
 
     @GetMapping(value = "user_id={user_id}&product_id={product_id}")
-    public Feedback getFeedback(@PathVariable long id, @PathVariable long user_id, @PathVariable long product_id){
+    public FeedBack getFeedback(@PathVariable long id, @PathVariable long user_id, @PathVariable long product_id){
         User user = userRepository.findById(user_id).get();
         Product product = productRepository.findById(product_id).get();
         FeedBack_ID feelBackId =new FeedBack_ID(user,product);
@@ -38,7 +38,7 @@ public class FeedBackResource {
 
     }
     @PutMapping(value = "user_id={user_id}&product_id={product_id}")
-    public boolean insertFeelBack(@PathVariable long user_id, @PathVariable long product_id , @RequestBody Feedback feedback){
+    public boolean insertFeelBack(@PathVariable long user_id, @PathVariable long product_id , @RequestBody FeedBack feedback){
         User user = userRepository.findById(user_id).get();
         Product product = productRepository.findById(product_id).get();
         feedback.setUser(user);

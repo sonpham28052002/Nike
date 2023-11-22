@@ -39,7 +39,7 @@ public class Product {
     @Column
     private String bags;
     @Column
-    private String favouries;
+    private String favorites;
     @JsonManagedReference
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     @Column(name = "product_image")
@@ -58,7 +58,7 @@ public class Product {
     @JsonManagedReference
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     @Column(name = "feedback")
-    private List<Feedback> feedbacks;
+    private List<FeedBack> feedbacks;
     @Override
     public String toString() {
         return "Product{" +

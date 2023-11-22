@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import { styles } from "./style";
-import { HelperText } from "react-native-paper";
-import { CheckBox } from "@rneui/themed";
+import { HelperText, Checkbox } from "react-native-paper";
+import {} from "@rneui/themed";
 export default function sign_in() {
   var [email, setEmail] = React.useState(undefined);
   var [password, setPassword] = React.useState(undefined);
@@ -64,14 +64,16 @@ export default function sign_in() {
             Error: mật khẩu phải có ít nhất 6 ký tự và có cả số và chữ!!!
           </HelperText>
         )}
-        <View style={{marginTop:-10, backgroundColor:"red", flexDirection:"row"}}>
-        <CheckBox
-           checked={checked}
-           onPress={()=> setCheck(!checked)}
-           iconType="material-community"
-           checkedIcon="checkbox-outline"
-           uncheckedIcon={'checkbox-blank-outline'}
-         />
+        <View style={{ flexDirection: "row" }}>
+          <View style={{flex}}>
+            <Checkbox
+              style={{ height: 10 }}
+              status={checked ? "checked" : "unchecked"}
+              onPress={() => setCheck(!checked)}
+              color="black"
+            />
+            <Text>Remember</Text>
+          </View>
         </View>
         <TouchableOpacity
           style={styles.Button}
