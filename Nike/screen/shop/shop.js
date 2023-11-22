@@ -3,44 +3,24 @@ import { FlatList, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './style'
 import React from 'react';
-export default function shop() {
+export default function shop({ navigation }) {
   const data = [{
     name: 'Sneakers of the Week',
     img: require('./assets/sneakersOfTheWeek.png')
   },
   {
-    name: 'name 2',
-    img: require('./assets/speed.jpg')
-
+    name: 'Best Sellers',
+    img: require('./assets/bestseller.jpg')
   },
   {
-    name: 'name 3',
-    img: require('./assets/speed.jpg')
-
+    name: 'Discount',
+    img: require('./assets/discount.png')
   },
   {
-    name: 'name 4',
-    img: require('./assets/speed.jpg')
+    name: 'Shop All',
+    img: require('./assets/shopAll.png')
+  }]
 
-  },
-  {
-    name: 'name 5',
-    img: require('./assets/speed.jpg')
-
-  },
-  {
-    name: 'name 6',
-    img: require('./assets/speed.jpg')
-
-  },
-  {
-    name: 'name 7',
-    img: require('./assets/speed.jpg')
-
-  }
-
-
-  ]
   const dataCart = [{
     name: 'name 1',
     img: require('./assets/speed.jpg'),
@@ -94,8 +74,12 @@ export default function shop() {
             horizontal
             renderItem={({ item }) => {
               return (
-                <TouchableOpacity style={{ marginRight: 10, width: 110 }}>
-                  <Image source={item.img} style={styles.imgSmall} />
+                <TouchableOpacity style={{ marginRight: 10, width: 110 }}
+                  onPress={()=>{
+                    navigation.navigate(item.name)
+                  }}
+                >
+                  <Image source={item.img} resizeMode='contain' style={styles.imgSmall} />
                   <Text style={styles.textItem}>{item.name}</Text>
                 </TouchableOpacity>
               )
