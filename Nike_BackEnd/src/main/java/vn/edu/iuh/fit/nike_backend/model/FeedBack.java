@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @Builder
 @IdClass(FeelBack_ID.class)
-public class Feelback {
+public class Feedback {
     @Id
     private long id;
 
