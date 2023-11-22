@@ -3,8 +3,6 @@ package vn.edu.iuh.fit.nike_backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "user")
 @AllArgsConstructor
@@ -31,5 +29,6 @@ public class User {
     private String bag;
     @Column
     private String favourite;
-
+    @Column
+    private String password;
 }
