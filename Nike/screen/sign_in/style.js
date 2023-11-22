@@ -12,8 +12,8 @@ var styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "",
-    marginVertical: 10,
-    paddingHorizontal: 20,
+    marginVertical: 5,
+    paddingHorizontal: 40,
     fontWeight: "500",
     fontSize: 15,
   },
@@ -28,14 +28,22 @@ var styles = StyleSheet.create({
     backgroundColor: "black",
   },
   imageLogo: {
-    height: 60,
-    marginTop: -35,
+    height: 90,
+    marginTop: -65,
   },
   title: {
     fontSize: 30,
     fontWeight: "900",
     textAlign: "center",
   },
+  viewSub: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+  },
+  textError: { marginTop: -10, fontWeight: "bold" },
+  icon: { position: "absolute", top: 15, left: 10 },
 });
 
 export { styles };

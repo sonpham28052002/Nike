@@ -26,3 +26,7 @@
 	+ https://callstack.github.io/react-native-paper/docs/guides/getting-started
 - react-native-swiper-flatlist
 	+ npm i react-native-swiper-flatlist
+- firebase
+	+ npm install firebase
+- text-gradient
+	+ npm i react-native-text-gradient
