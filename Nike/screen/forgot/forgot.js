@@ -9,35 +9,26 @@ import {
 } from "react-native";
 import { Entypo, AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./style";
-import { HelperText, Checkbox } from "react-native-paper";
+import { HelperText } from "react-native-paper";
 import { Dialog } from "@rneui/themed";
 import { FIREBASE_AUTH } from "../../config_Firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-export default function sign_in({ navigation }) {
+import { sendPasswordResetEmail } from "firebase/auth";
+export default function forgot({navigation}) {
   const auth = FIREBASE_AUTH;
-  var [email, setEmail] = React.useState("sonpham28052002@gmail.com");
-  var [password, setPassword] = React.useState("sonpham");
-  var [checked, setCheck] = React.useState(false);
+  var [email, setEmail] = React.useState(undefined);
   var [isLoading, setLoading] = React.useState(false);
+  var [visibleSussecc, setVisibleSussecc] = React.useState(false);
   var [visibleError, setVisibleError] = React.useState(false);
-  var [visibleErrorPass, setVisibleErrorPass] = React.useState(false);
 
-  var login = async (email, password) => {
+  var login = async (email) => {
     setLoading(true);
-    if (hasErrorEmail() && hasErrorPassword()) {
+    if (hasErrorEmail() && email != undefined) {
       try {
-        const response = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        console.log(response);
-        if (!response.user.emailVerified) {
-          setVisibleError(true);
-        }
+        await sendPasswordResetEmail(auth, email);
+        setVisibleSussecc(true);
         setLoading(false);
       } catch (error) {
-        setVisibleErrorPass(true);
+        setVisibleError(true);
         setLoading(false);
       }
     }
@@ -45,12 +36,7 @@ export default function sign_in({ navigation }) {
   const hasErrorEmail = () => {
     return email == undefined || email.includes("@");
   };
-  const hasErrorPassword = () => {
-    return (
-      password == undefined ||
-      (password.length >= 6 && /^[a-zA-Z0-9]+$/.test(password))
-    );
-  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -69,7 +55,7 @@ export default function sign_in({ navigation }) {
           paddingHorizontal: 30,
         }}
       >
-        <Text style={styles.title}>WELCOME</Text>
+        <Text style={styles.title}>FORGOT PASSWORD</Text>
         <View>
           <TextInput
             style={[styles.TextInput]}
@@ -89,53 +75,10 @@ export default function sign_in({ navigation }) {
             Error: Phải là email!!!
           </HelperText>
         )}
-
-        <View>
-          <TextInput
-            style={[styles.TextInput]}
-            placeholder="Password"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-          />
-          <Entypo
-            name="lock-open"
-            style={styles.icon}
-            size={25}
-            color="black"
-          />
-        </View>
-        {hasErrorPassword() || (
-          <HelperText style={styles.textError} type="error">
-            Error:phải có ít nhất 6 ký tự và có cả số và chữ!!!
-          </HelperText>
-        )}
-        <View style={styles.viewSub}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Checkbox
-              style={{ height: 10 }}
-              status={checked ? "checked" : "unchecked"}
-              onPress={() => setCheck(!checked)}
-              color="black"
-            />
-            <Text style={{ fontWeight: "500" }}>Remember</Text>
-          </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("forgot");
-            }}
-          >
-            <Text
-              style={{ fontWeight: "500", textDecorationLine: "underline" }}
-            >
-              Forgot Password?
-            </Text>
-          </TouchableOpacity>
-        </View>
         <TouchableOpacity
           style={styles.Button}
           onPress={() => {
-            login(email, password);
+            login(email);
           }}
         >
           {isLoading ? (
@@ -149,11 +92,11 @@ export default function sign_in({ navigation }) {
         <Text style={{ textAlign: "center" }}>
           Create new account?
           <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("signup");
+            onPress={()=>{
+              navigation.navigate("signin")
             }}
           >
-            <Text style={{ fontWeight: "bold" }}> Sign Up</Text>
+            <Text style={{ fontWeight: "bold" }}> Sign In</Text>
           </TouchableOpacity>
         </Text>
         <Text style={{ textAlign: "center", fontWeight: "500", marginTop: 15 }}>
@@ -179,6 +122,19 @@ export default function sign_in({ navigation }) {
       </View>
       <Dialog
         overlayStyle={{ borderRadius: 20 }}
+        isVisible={visibleSussecc}
+        onBackdropPress={() => {
+          setVisibleSussecc(!visibleSussecc);
+        }}
+      >
+        <Dialog.Title
+          titleStyle={{ color: "green", textAlign: "center" }}
+          title="Yêu Cầu Đổi Mật Khẩu Thành Công"
+        />
+        <Text>Vui lòng truy cập vào email để thay đổi lại mật khẩu.</Text>
+      </Dialog>
+      <Dialog
+        overlayStyle={{ borderRadius: 20 }}
         isVisible={visibleError}
         onBackdropPress={() => {
           setVisibleError(!visibleError);
@@ -188,23 +144,7 @@ export default function sign_in({ navigation }) {
           titleStyle={{ color: "red", textAlign: "center" }}
           title="Đăng Nhập Thất Bại"
         />
-        <Text>
-          Email đã được đăng kí tài khoản. Vui lòng truy vào email để xác thực
-          tài khoản.
-        </Text>
-      </Dialog>
-      <Dialog
-        overlayStyle={{ borderRadius: 20 }}
-        isVisible={visibleErrorPass}
-        onBackdropPress={() => {
-          setVisibleErrorPass(!visibleErrorPass);
-        }}
-      >
-        <Dialog.Title
-          titleStyle={{ color: "red", textAlign: "center" }}
-          title="Đăng Nhập Thất Bại"
-        />
-        <Text>Mật khẩu không chính xác vui lòng thử lại sau.</Text>
+        <Text>Email này không phải là một email</Text>
       </Dialog>
     </View>
   );
