@@ -14,7 +14,7 @@ import vn.edu.iuh.fit.nike_backend.respositories.UserRepository;
 import java.util.List;
 @CrossOrigin(origins = HostFrontEnd.host)
 @RestController
-@RequestMapping(value = "/feed_back",produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/feedback",produces = {MediaType.APPLICATION_JSON_VALUE})
 public class FeedBackResource {
 
     @Autowired
