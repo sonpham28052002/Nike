@@ -1,18 +1,25 @@
 import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
 import Shop from "./shop";
 import SneakerWeek from "./sneakerWeek";
 import BestSeller from "./bestSeller";
 import Discount from "./discount";
 import ShopAll from "./shopAll";
+import Custom from "./custom";
+import MenShoes from "./menShoes";
+import WomenShoes from "./womenShoes";
+import Younger from "./younger";
+import OurBestSellers from "./ourBestSellers";
+import TopRoad from "./topRoad";
+import JustIn from "./justIn"
+import Brand from "./brand";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import styles from "./style";
 import { Badge } from "@rneui/base";
 
 const Stack = createNativeStackNavigator();
-const shopHome = ({ navigation ,route}) => {
+const shopHome = ({ navigation, route }) => {
   //user
   var user = route.params
   console.log(navigation);
@@ -47,14 +54,29 @@ const shopHome = ({ navigation ,route}) => {
         component={Shop}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="Sneakers of the Week"
-        component={SneakerWeek}
-        initialParams={navigation}
-      />
+      {/*  The week's highlight */}
+      <Stack.Screen name="Sneakers of the Week" component={SneakerWeek}/>
       <Stack.Screen name="Best Sellers" component={BestSeller} />
       <Stack.Screen name="Discount" component={Discount} />
       <Stack.Screen name="Shop All" component={ShopAll} />
+
+      {/* Gift That Move You */}
+      <Stack.Screen name="For Custom" component={Custom} />
+      <Stack.Screen name="For Men" component={MenShoes} />
+      <Stack.Screen name="For Women" component={WomenShoes} />
+      <Stack.Screen name="For Younger - Kids" component={Younger} />
+
+      {/* Our BestSellers */}
+      <Stack.Screen name="Our BestSellers" component={OurBestSellers} />
+
+      {/* Top Road */}
+      <Stack.Screen name="Top Road" component={TopRoad} />
+
+      {/* JustIn */}
+      <Stack.Screen name="Just In" component={JustIn} />
+
+      {/* Brand */}
+      <Stack.Screen name="Brand" component={Brand} />
     </Stack.Navigator>
   );
 };

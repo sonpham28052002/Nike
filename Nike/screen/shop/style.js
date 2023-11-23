@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start'
     },
     imgSmall: {
-        width: 110,
-        height: 110,
+        width: 120,
+        height: 120,
         borderRadius: 10
     },
     imgMedium: {

@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import React from 'react'
 import { setOptionDrawer } from './function';
 import { getProductDiscount } from '../../service/ProductService';
