@@ -14,7 +14,7 @@ import lombok.*;
 public class User {
     @Id
     @Column(name = "user_id")
-    private long id;
+    private String id;
     @Column
     private String name;
     @Column
@@ -29,6 +29,4 @@ public class User {
     private String bag;
     @Column
     private String favourite;
-    @Column
-    private String password;
 }
