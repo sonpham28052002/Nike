@@ -6,11 +6,11 @@ import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./style";
 import { getImage } from "../../function/getImage";
 import { getImageDiscount } from "../../function/getImageDiscount";
-import {} from '../../service/UserService'
+import {} from "../../service/UserService";
 export default function app(props) {
   var [product, setProduct] = React.useState(props.value);
   var [user, setUser] = React.useState(props.user);
-console.log(user);
+  console.log(user);
   var listFavories =
     user.favorites === null || user.favorites == ""
       ? []
@@ -30,7 +30,7 @@ console.log(user);
     { symbol: "đ", separator: ",", precision: 0 }
   ).format();
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={[styles.card,styles.boxShadown]}>
       <View>
         <Image
           style={styles.imageProduct}
@@ -112,19 +112,18 @@ console.log(user);
         <TouchableOpacity
           style={{ position: "absolute", left: 10, top: 5 }}
           onPress={() => {
-              if (isFavorites) {
-                listFavories = listFavories.filter(
-                  (item) => Number.parseInt(item) != product.id
-                );
-                user.favorites = listFavories.join(",");
-                setIsFavorites(false);
-              } else {
-                listFavories.push(product.id);
-                user.favorites = listFavories.join(",");
-                setIsFavorites(true);
-              }
-
-            }}
+            if (isFavorites) {
+              listFavories = listFavories.filter(
+                (item) => Number.parseInt(item) != product.id
+              );
+              user.favorites = listFavories.join(",");
+              setIsFavorites(false);
+            } else {
+              listFavories.push(product.id);
+              user.favorites = listFavories.join(",");
+              setIsFavorites(true);
+            }
+          }}
         >
           <AntDesign
             name={isFavorites ? "heart" : "hearto"}
