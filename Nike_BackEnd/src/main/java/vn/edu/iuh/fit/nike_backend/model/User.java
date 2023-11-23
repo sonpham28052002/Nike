@@ -28,5 +28,5 @@ public class User {
     @Column
     private String bag;
     @Column
-    private String favourite;
+    private String favorites;
 }

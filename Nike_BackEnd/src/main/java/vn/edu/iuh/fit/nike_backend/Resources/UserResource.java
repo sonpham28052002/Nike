@@ -7,6 +7,7 @@ import vn.edu.iuh.fit.nike_backend.model.User;
 import vn.edu.iuh.fit.nike_backend.respositories.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = HostFrontEnd.host)
 @RestController
@@ -18,6 +19,11 @@ public class UserResource {
     @GetMapping
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    @GetMapping(value = "/id={id}")
+    public Optional<User> getUser(@PathVariable("id") String userId){
+        return userRepository.findById(userId);
     }
 
     @PutMapping(value = "id={id}")
