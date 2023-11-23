@@ -1,24 +1,25 @@
 import { View, FlatList } from 'react-native'
 import React from 'react'
 import { setOptionDrawer } from './function';
-import { getAllProduct } from '../../service/ProductService';
+import { getProductBestSellers } from '../../service/ProductService';
 import Card from '../cardProduct/card'
-import {user} from '../Favorites/product'
-
-export default function shopAll({navigation, route}) {
+import { user } from '../Favorites/product'
+const ourBestSellers = ({ navigation, route }) => {
   var [items, setItems] = React.useState([])
-  React.useEffect(()=>{
+  React.useEffect(() => {
     setOptionDrawer(navigation, route.params)
-    getAllProduct((data) => {
+    getProductBestSellers((data) => {
       setItems(data)
-    })
-  },[])
+    }, -1)
+  }, [])
   return (
     <View>
       <FlatList data={items} numColumns={2} renderItem={({ item }) => {
-        // get all products
+        // get product with the highest purchase quantity
          return <Card value = {item} user= {user}/>
       }} />
     </View>
   )
 }
+
+export default ourBestSellers
