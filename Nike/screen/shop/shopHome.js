@@ -52,7 +52,7 @@ const shopHome = ({ navigation ,route}) => {
         component={SneakerWeek}
         initialParams={navigation}
       />
-      <Stack.Screen name="Best_Sellers" component={BestSeller} />
+      <Stack.Screen name="Best Sellers" component={BestSeller} />
       <Stack.Screen name="Discount" component={Discount} />
       <Stack.Screen name="Shop All" component={ShopAll} />
     </Stack.Navigator>

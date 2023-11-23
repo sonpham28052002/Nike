@@ -10,7 +10,7 @@ export default function shop({ navigation, route }) {
     img: require('./assets/sneakersOfTheWeek.png')
   },
   {
-    name: 'Best_Sellers',
+    name: 'Best Sellers',
     img: require('./assets/bestseller.jpg')
   },
   {

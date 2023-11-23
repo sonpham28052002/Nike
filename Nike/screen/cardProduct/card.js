@@ -6,7 +6,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./style";
 import { getImage } from "../../function/getImage";
 import { getImageDiscount } from "../../function/getImageDiscount";
-import {} from '../../service/UserService'
+import { calcStar } from "../../function/calculator";
 export default function app(props) {
   var [product, setProduct] = React.useState(props.value);
   var [user, setUser] = React.useState(props.user);
@@ -19,14 +19,14 @@ console.log(user);
     listFavories.filter((item) => Number.parseInt(item) == product.id)[0] !=
     undefined;
   var [isFavorites, setIsFavorites] = React.useState(isfavorites);
-  var star = 5;
+  var star = calcStar(product.feedbacks);
   var price = currency(product.price, {
     symbol: "đ",
     separator: ",",
     precision: 0,
   }).format();
   var priceDiscount = currency(
-    product.price - product.price * (product.coupon / 100),
+    product.price - product.price * (product.discount / 100),
     { symbol: "đ", separator: ",", precision: 0 }
   ).format();
   return (
@@ -99,7 +99,7 @@ console.log(user);
             <Text style={{ fontWeight: "bold", fontSize: 15 }}>
               {priceDiscount}
             </Text>
-            {product.coupon == 0 || (
+            {product.discount == 0 || (
               <Text style={styles.textPrice}>{price}</Text>
             )}
           </View>
@@ -107,7 +107,7 @@ console.log(user);
         <Image
           resizeMode="center"
           style={styles.imageDiscount}
-          source={getImageDiscount(product.coupon)}
+          source={getImageDiscount(product.discount)}
         />
         <TouchableOpacity
           style={{ position: "absolute", left: 10, top: 5 }}
