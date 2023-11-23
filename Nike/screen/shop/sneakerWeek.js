@@ -1,9 +1,7 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
-import { AntDesign } from "@expo/vector-icons";
 import { setOptionDrawer } from './function';
 import { getAllProduct } from '../../service/ProductService';
-import { FlatList } from 'react-native';
 import { calcStar } from '../../function/calculator';
 import Card from '../cardProduct/card'
 import { user } from '../Favorites/product'

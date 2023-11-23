@@ -27,16 +27,34 @@ public class ProductResource {
         return productRepository.findById(id);
     }
 
-    @GetMapping(value = "/bestSellers")
-    public List<Product> getProductBestSellers(){
-        List<Product> productList = productRepository.get20ProductWithTheHighestPurchaseQuantity();
+    @GetMapping(value = "/bestSellersOfWeek")
+    public List<Product> getProductBestSellersOfWeek(){
+        List<Product> productList = productRepository.get20ProductWithTheHighestPurchaseQuantityIn7Days();
         if(productList.size() <= 20)
             return productList;
         return productList.subList(0,20);
     }
 
+    @GetMapping(value = "/bestSellers")
+    public List<Product> getProductBestSellers(@RequestParam(value = "limit", required = false, defaultValue = "-1") int limit){
+        List<Product> products = productRepository.getProductWithTheHighestPurchaseQuantity();
+        if(limit == -1)
+            return products;
+        return products.subList(0, limit);
+    }
+
     @GetMapping(value = "/discount")
     public List<Product> getProductDiscount(){
         return productRepository.findAllByDiscountIsGreaterThanOrderByDiscountDesc(0);
+    }
+
+    @GetMapping(value = "/search")
+    public List<Product> getProductsWithTextSearch(
+            @RequestParam(value = "textSearch", required = false, defaultValue = "") String textSearch,
+            @RequestParam(value = "limit", required = false, defaultValue = "20") int limit){
+        List<Product> productList = productRepository.findAllByTagContainsOrNameContainsOrBrandContainsOrderByDiscountDesc(textSearch, textSearch, textSearch);
+        if(limit >= productList.size())
+            return productList;
+        return productList.subList(0, limit);
     }
 }
