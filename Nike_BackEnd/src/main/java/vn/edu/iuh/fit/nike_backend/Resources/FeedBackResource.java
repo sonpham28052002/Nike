@@ -30,7 +30,7 @@ public class FeedBackResource {
     }
 
     @GetMapping(value = "user_id={user_id}&product_id={product_id}")
-    public FeedBack getFeedback(@PathVariable long id, @PathVariable long user_id, @PathVariable long product_id){
+    public FeedBack getFeedback( @PathVariable String user_id, @PathVariable long product_id){
         User user = userRepository.findById(user_id).get();
         Product product = productRepository.findById(product_id).get();
         FeedBack_ID feelBackId =new FeedBack_ID(user,product);
@@ -38,7 +38,7 @@ public class FeedBackResource {
 
     }
     @PutMapping(value = "user_id={user_id}&product_id={product_id}")
-    public boolean insertFeelBack(@PathVariable long user_id, @PathVariable long product_id , @RequestBody FeedBack feedback){
+    public boolean insertFeelBack(@PathVariable String user_id, @PathVariable long product_id , @RequestBody FeedBack feedback){
         User user = userRepository.findById(user_id).get();
         Product product = productRepository.findById(product_id).get();
         feedback.setUser(user);

@@ -7,6 +7,7 @@ import vn.edu.iuh.fit.nike_backend.model.User;
 import vn.edu.iuh.fit.nike_backend.respositories.UserRepository;
 
 import java.util.List;
+
 @CrossOrigin(origins = HostFrontEnd.host)
 @RestController
 @RequestMapping(value = "/user", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -15,14 +16,30 @@ public class UserResource {
     private UserRepository userRepository;
 
     @GetMapping
-    public List<User> getAll(){
+    public List<User> getAll() {
         return userRepository.findAll();
     }
 
     @PutMapping(value = "id={id}")
-    public boolean update(@PathVariable("id") long id, @RequestBody User user){
+    public boolean update(@PathVariable("id") String id, @RequestBody User user) {
         user.setId(id);
-        return userRepository.save(user).isStatus();
+        try {
+            userRepository.save(user);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+
+    }
+
+    @PutMapping
+    public boolean insert(@RequestBody User user) {
+        try {
+            userRepository.save(user);
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
     }
 
 }

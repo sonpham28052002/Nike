@@ -29,6 +29,7 @@ export default function sign_in() {
           email,
           password
         );
+        console.log("dákdjna");
         console.log(response.user);
         console.log(email);
         console.log(password);
@@ -61,13 +62,11 @@ export default function sign_in() {
       />
       <View
         style={{
-          // marginTop: 10,
           width: "100%",
           paddingHorizontal: 30,
         }}
       >
         <Text style={styles.title}>WELCOME</Text>
-        <Text style={styles.title}>LOGIN</Text>
         <View>
           <TextInput
             style={[styles.TextInput]}

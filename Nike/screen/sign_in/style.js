@@ -35,6 +35,7 @@ var styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "900",
     textAlign: "center",
+    marginBottom: 20,
   },
   viewSub: {
     flexDirection: "row",
