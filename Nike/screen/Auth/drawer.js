@@ -16,7 +16,7 @@ import {
   SimpleLineIcons,
 } from "@expo/vector-icons";
 import discover from "../discover/discover";
-import shop from "../shop/shop";
+import shop from "../shop/shopHome";
 import order from "../order/order";
 import favorites from "../Favorites/favorites";
 
@@ -111,6 +111,7 @@ export default function MyDrawer({ navigation }) {
         useLegacyImplementation
         component={shop}
         options={{
+          
           drawerIcon: () => (
             <MaterialCommunityIcons
               name="archive-search-outline"

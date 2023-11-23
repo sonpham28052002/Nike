@@ -11,17 +11,15 @@ import ShopAll from './shopAll'
 const Stack = createNativeStackNavigator()
 const shopHome = () => {
     return (
-        <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name="Shop" component={Shop} options={{ headerShown: false }} />
                 <Stack.Screen name="Sneakers of the Week" component={SneakerWeek}
                     options={{}}
                 />
-                <Stack.Screen name="Best Sellers" component={BestSeller} />
+                <Stack.Screen name="Best_Sellers" component={BestSeller} />
                 <Stack.Screen name="Discount" component={Discount} />
                 <Stack.Screen name="Shop All" component={ShopAll} />
             </Stack.Navigator>
-        </NavigationContainer>
     )
 }
 
