@@ -26,4 +26,12 @@ public class ProductResource {
     public Optional<Product> getProductById(@PathVariable("id") long id){
         return productRepository.findById(id);
     }
+
+    @GetMapping(value = "/bestSellers")
+    public List<Product> getProductBestSellers(){
+        List<Product> productList = productRepository.get20ProductWithTheHighestPurchaseQuantity();
+        if(productList.size() <= 20)
+            return productList;
+        return productList.subList(0,20);
+    }
 }
