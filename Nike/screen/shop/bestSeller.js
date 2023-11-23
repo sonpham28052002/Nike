@@ -14,7 +14,7 @@ const bestSeller = ({navigation, route}) => {
   return (
     <View>
       <FlatList data={items} renderItem={({ item }) => {
-        // get 20 product with the highest purchase quantity
+        // get 20 product with the highest purchase quantity in 7 days
          return <View><Text>{item.name}</Text></View>
       }} />
     </View>

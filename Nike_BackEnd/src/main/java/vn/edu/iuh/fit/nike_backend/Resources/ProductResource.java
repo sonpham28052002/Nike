@@ -34,4 +34,9 @@ public class ProductResource {
             return productList;
         return productList.subList(0,20);
     }
+
+    @GetMapping(value = "/discount")
+    public List<Product> getProductDiscount(){
+        return productRepository.findAllByDiscountIsGreaterThanOrderByDiscountDesc(0);
+    }
 }

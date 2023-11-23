@@ -15,4 +15,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "(SELECT o.id FROM Order o WHERE DATEDIFF(CURRENT_DATE, o.order_date) < 7)" +
             " GROUP BY od.product.id ORDER BY SUM(od.quantity) DESC)")
     List<Product> get20ProductWithTheHighestPurchaseQuantity();
+
+    List<Product> findAllByDiscountIsGreaterThanOrderByDiscountDesc(int discount);
 }

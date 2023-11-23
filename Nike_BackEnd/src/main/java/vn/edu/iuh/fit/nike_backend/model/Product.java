@@ -35,7 +35,7 @@ public class Product {
     @Column
     private String brand;
     @Column
-    private int coupon;
+    private int discount;
     @Column
     private String bags;
     @Column
@@ -71,7 +71,7 @@ public class Product {
                 ", status=" + status +
                 ", information='" + information + '\'' +
                 ", brand='" + brand + '\'' +
-                ", coupon=" + coupon +
+                ", discount=" + discount +
                 '}';
     }
 }
