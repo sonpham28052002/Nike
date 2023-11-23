@@ -2,12 +2,12 @@ import { StyleSheet } from "react-native";
 
 var styles = StyleSheet.create({
   card: {
-    width: "45%",
+    width: "47%",
     height: 250,
     borderWidth: 1,
     borderRadius: 10,
     padding: 1,
-    margin: 3,
+    margin: 5,
   },
   imageProduct: {
     height: 150,

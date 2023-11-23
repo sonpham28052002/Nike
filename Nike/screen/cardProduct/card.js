@@ -6,11 +6,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { styles } from "./style";
 import { getImage } from "../../function/getImage";
 import { getImageDiscount } from "../../function/getImageDiscount";
-<<<<<<< HEAD
 import { calcStar } from "../../function/calculator";
-=======
-import {} from "../../service/UserService";
->>>>>>> sonpham
+
 export default function app(props) {
   var [product, setProduct] = React.useState(props.value);
   var [user, setUser] = React.useState(props.user);
@@ -34,7 +31,7 @@ export default function app(props) {
     { symbol: "đ", separator: ",", precision: 0 }
   ).format();
   return (
-    <TouchableOpacity style={[styles.card,styles.boxShadown]}>
+    <TouchableOpacity style={[styles.card, styles.boxShadown]}>
       <View>
         <Image
           style={styles.imageProduct}
