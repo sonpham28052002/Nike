@@ -20,13 +20,23 @@ function Home() {
     </Tab.Navigator>
   );
 }
+var users = {
+  id: "LIyeiaXumRYLnMzzIscCbOngRYU2",
+  name: "Nguyễn Thanh Sơn",
+  email: "anhsonzzvn@gmail.com",
+  address: null,
+  image: null,
+  status: false,
+  bag: null,
+  favorites: null,
+};
 
 export default function app() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen component={Splash} name="splash_screen" />
-        <Stack.Screen component={drawer} name="Home" />
+        <Stack.Screen component={drawer} name="Home"  initialParams={users}/>
         <Stack.Screen component={sign_in} name="signin" />
         <Stack.Screen component={user} name="user" />
 

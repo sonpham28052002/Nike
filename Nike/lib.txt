@@ -27,6 +27,6 @@
 - react-native-swiper-flatlist
 	+ npm i react-native-swiper-flatlist
 - firebase
-	+ npm install firebase
-- text-gradient
-	+ npm i react-native-text-gradient
+	+ npx expo install firebase
+- currency.js
+	+ npm install --save currency.js
