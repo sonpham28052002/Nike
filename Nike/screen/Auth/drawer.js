@@ -23,7 +23,9 @@ import favorites from "../Favorites/favorites";
 
 const Drawer = createDrawerNavigator();
 
-export default function MyDrawer({ navigation }) {
+export default function MyDrawer({ navigation, route }) {
+  var user = route.params
+  console.log(user);
   return (
     <Drawer.Navigator
       useLegacyImplementation={false}
@@ -60,7 +62,7 @@ export default function MyDrawer({ navigation }) {
                     fontSize: 25,
                   }}
                 >
-                  Phạm Thanh Sơn
+                  {user.name}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -102,15 +104,17 @@ export default function MyDrawer({ navigation }) {
       <Drawer.Screen
         name="Discover"
         component={discover}
+        initialParams={user}
         options={{
           drawerIcon: () => <Feather name="home" size={24} color="black" />,
         }}
       />
       <Drawer.Screen
         name="Shop"
-        useLegacyImplementation
         component={shop}
+        initialParams={user}
         options={{
+          
           drawerIcon: () => (
             <MaterialCommunityIcons
               name="archive-search-outline"
@@ -123,6 +127,7 @@ export default function MyDrawer({ navigation }) {
       <Drawer.Screen
         name="Order"
         component={order}
+        initialParams={user}
         options={{
           drawerIcon: () => <Feather name="archive" size={24} color="black" />,
         }}
@@ -130,6 +135,7 @@ export default function MyDrawer({ navigation }) {
       <Drawer.Screen
         name="Favorites"
         component={favorites}
+        initialParams={user}
         options={{
           drawerIcon: () => <Feather name="heart" size={24} color="black" />,
         }}
