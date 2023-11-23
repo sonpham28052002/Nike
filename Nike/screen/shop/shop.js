@@ -3,7 +3,8 @@ import { FlatList, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import styles from './style'
 import React from 'react';
-export default function shop({ navigation }) {
+import { getAllProduct } from '../../service/ProductService';
+export default function shop({ navigation, route }) {
   const data = [{
     name: 'Sneakers of the Week',
     img: require('./assets/sneakersOfTheWeek.png')
@@ -65,7 +66,7 @@ export default function shop({ navigation }) {
   var [showSale, setShowSale] = React.useState(false)
   return (
     <View style={{ flex: 1 }}>
-      <View style={styles.item}>
+      <View style={[styles.item, { marginTop: 10 }]}>
         <Text style={styles.headerListItem}>This Week’s Highlights</Text>
         <ScrollView
           nestedScrollEnabled
@@ -75,8 +76,11 @@ export default function shop({ navigation }) {
             renderItem={({ item }) => {
               return (
                 <TouchableOpacity style={{ marginRight: 10, width: 110 }}
-                  onPress={()=>{
-                    navigation.navigate(item.name)
+                  onPress={() => {
+                    route.params.setOptions({
+                      headerShown: false
+                    })
+                    navigation.navigate(item.name,route.params)
                   }}
                 >
                   <Image source={item.img} resizeMode='contain' style={styles.imgSmall} />

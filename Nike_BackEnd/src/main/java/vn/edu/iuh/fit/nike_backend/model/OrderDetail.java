@@ -30,6 +30,6 @@ public class OrderDetail {
 
     private Integer quantity;
 
-    private Double total;
+    private Double discount;
 
 }
