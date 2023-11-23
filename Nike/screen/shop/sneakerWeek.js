@@ -5,7 +5,8 @@ import { setOptionDrawer } from './function';
 import { getAllProduct } from '../../service/ProductService';
 import { FlatList } from 'react-native';
 import { calcStar } from '../../function/calculator';
-
+import Card from '../cardProduct/card'
+import { user } from '../Favorites/product'
 const sneakerWeek = ({ navigation, route }) => {
   var [items, setItems] = React.useState([])
   React.useEffect(() => {
@@ -15,12 +16,13 @@ const sneakerWeek = ({ navigation, route }) => {
     })
   }, [])
   return (
-    <View>
-      <FlatList data={items} renderItem={({ item }) => {
-        let star = calcStar(item.feedbacks)
-        // get product have average rating >= 4
-         return star >=4? <View><Text>{star}</Text></View>: null
-      }} />
+    <View style={{flexDirection: 'row', flexWrap:'wrap', justifyContent:'flex-start'}}>
+      {
+        items.map((item) => {
+          if (calcStar(item.feedbacks) >= 4)
+            return <Card value={item} user={user} />
+        })
+      }
     </View>
   )
 }

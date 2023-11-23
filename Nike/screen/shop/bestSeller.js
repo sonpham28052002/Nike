@@ -2,6 +2,8 @@ import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 import { setOptionDrawer } from './function';
 import { getProductBestSellers } from '../../service/ProductService';
+import {user} from '../Favorites/product'
+import Card from '../cardProduct/card'
 
 const bestSeller = ({navigation, route}) => {
   var [items, setItems] = React.useState([])
@@ -13,9 +15,9 @@ const bestSeller = ({navigation, route}) => {
   },[])
   return (
     <View>
-      <FlatList data={items} renderItem={({ item }) => {
+      <FlatList data={items} numColumns={2} renderItem={({ item }) => {
         // get 20 product with the highest purchase quantity in 7 days
-         return <View><Text>{item.name}</Text></View>
+         return <Card value = {item} user= {user}/>
       }} />
     </View>
   )

@@ -12,7 +12,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.id IN " +
             "(SELECT od.product.id FROM OrderDetail od WHERE od.order.id IN " +
-            "(SELECT o.id FROM Order o WHERE DATEDIFF(CURRENT_DATE, o.order_date) < 7)" +
+            "(SELECT o.id FROM Order o WHERE DATEDIFF(CURRENT_DATE, o.order_date) <= 7)" +
             " GROUP BY od.product.id ORDER BY SUM(od.quantity) DESC)")
     List<Product> get20ProductWithTheHighestPurchaseQuantity();
 
