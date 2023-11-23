@@ -10,8 +10,20 @@ var getAllProduct = (callback) => {
     });
 };
 
-var getProductBestSellers = (callback) => {
-  fetch("http://localhost:8080/product/bestSellers")
+var getProductBestSellersOfWeek = (callback) => {
+  fetch("http://localhost:8080/product/bestSellersOfWeek")
+    .then((resp) => resp.json())
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      callback([]); // hoặc giá trị mặc định khác nếu có lỗi
+    });
+};
+
+var getProductBestSellers = (callback, limit) => {
+  fetch("http://localhost:8080/product/bestSellers?limit="+limit)
     .then((resp) => resp.json())
     .then((data) => {
       callback(data);
@@ -46,4 +58,16 @@ var getProductByID = (callback, id) => {
     });
 };
 
-export { getAllProduct, getProductByID, getProductBestSellers, getProductDiscount };
+var searchProduct = (callback, textSearch, limit) => {
+  fetch("http://localhost:8080/product/search?textSearch=" + textSearch+"&&limit="+limit)
+    .then((resp) => resp.json())
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      callback([]); // hoặc giá trị mặc định khác nếu có lỗi
+    });
+};
+
+export { getAllProduct, getProductByID, getProductBestSellersOfWeek, getProductBestSellers, getProductDiscount, searchProduct };

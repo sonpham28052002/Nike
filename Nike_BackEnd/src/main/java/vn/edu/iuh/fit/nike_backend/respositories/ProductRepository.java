@@ -10,11 +10,16 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query("SELECT p FROM Product p WHERE p.id IN " +
-            "(SELECT od.product.id FROM OrderDetail od WHERE od.order.id IN " +
-            "(SELECT o.id FROM Order o WHERE DATEDIFF(CURRENT_DATE, o.order_date) <= 7)" +
-            " GROUP BY od.product.id ORDER BY SUM(od.quantity) DESC)")
-    List<Product> get20ProductWithTheHighestPurchaseQuantity();
+    @Query("SELECT od.product FROM OrderDetail od " +
+            "WHERE DATEDIFF(CURRENT_DATE, od.order.order_date) < 7 " +
+            "GROUP BY od.product.id ORDER BY SUM(od.quantity) DESC ")
+    List<Product> get20ProductWithTheHighestPurchaseQuantityIn7Days();
+
+    @Query("SELECT od.product FROM OrderDetail od " +
+            "GROUP BY od.product.id ORDER BY SUM(od.quantity) DESC ")
+    List<Product> getProductWithTheHighestPurchaseQuantity();
 
     List<Product> findAllByDiscountIsGreaterThanOrderByDiscountDesc(int discount);
+
+    List<Product> findAllByTagContainsOrNameContainsOrBrandContainsOrderByDiscountDesc(String textContain1, String textContain2, String textContain3);
 }

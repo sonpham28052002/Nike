@@ -1,7 +1,7 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import React from 'react'
 import { setOptionDrawer } from './function';
-import { getProductBestSellers } from '../../service/ProductService';
+import { getProductBestSellersOfWeek } from '../../service/ProductService';
 import {user} from '../Favorites/product'
 import Card from '../cardProduct/card'
 
@@ -9,7 +9,7 @@ const bestSeller = ({navigation, route}) => {
   var [items, setItems] = React.useState([])
   React.useEffect(()=>{
     setOptionDrawer(navigation, route.params)
-    getProductBestSellers((data) => {
+    getProductBestSellersOfWeek((data) => {
       setItems(data)
     })
   },[])
