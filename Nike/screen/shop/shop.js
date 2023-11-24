@@ -26,55 +26,23 @@ export default function shop({ navigation, route }) {
 
   const dataGiftForYou = [{
     title: 'For Custom',
+    tag: 'custom',
     img: require('./assets/custom.jpg')
   },
   {
     title: 'For Men',
+    tag: 'men',
     img: require('./assets/menShoes.png')
   },
   {
     title: 'For Women',
+    tag: 'women',
     img: require('./assets/womenShoes.png')
   },
   {
     title: 'For Younger - Kids',
+    tag: 'younger',
     img: require('./assets/younger.jpg')
-  }]
-
-  const dataCart = [{
-    name: 'name 1',
-    img: require('./assets/speed.jpg'),
-    price: '3.829.000 đ'
-  },
-  {
-    name: 'name 2',
-    img: require('./assets/speed.jpg'),
-    price: '3.829.000 đ'
-
-  },
-  {
-    name: 'name 3',
-    img: require('./assets/speed.jpg'),
-    price: '3.829.000 đ'
-
-  },
-  {
-    name: 'name 4',
-    img: require('./assets/speed.jpg'),
-    price: '3.829.000 đ'
-
-  },
-  {
-    name: 'name 5',
-    img: require('./assets/speed.jpg'),
-    price: '3.829.000 đ'
-
-  },
-  {
-    name: 'name 6',
-    img: require('./assets/speed.jpg'),
-    price: '3.829.000 đ'
-
   }]
 
   const dataTopRoad = [{
@@ -94,7 +62,6 @@ export default function shop({ navigation, route }) {
     img: require('./assets/acg.png')
   }]
   const dataSearch = ['Dunk', 'AirForce 1', 'Air Jodan 1', 'Air Max', 'Blazer']
-  const dataBrand = [require('./assets/brand1.png'), require('./assets/brand2.png'), require('./assets/brand3.png'), require('./assets/brand4.png'), require('./assets/brand5.png'), require('./assets/brand6.jpg')]
   var [showNew, setShowNew] = React.useState(false)
   var [showShoes, setShowShoes] = React.useState(false)
   var [showClothing, setShowClothing] = React.useState(false)
@@ -152,7 +119,7 @@ export default function shop({ navigation, route }) {
                     route.params.setOptions({
                       headerShown: false
                     })
-                    navigation.navigate(item.title, route.params)
+                    navigation.navigate('Gift For You', {navigation: route.params, title: item.title, tag: item.tag})
                   }}
                 >
                   <Image source={item.img} style={styles.imgSmall} />
