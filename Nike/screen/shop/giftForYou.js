@@ -1,16 +1,19 @@
-import { FlatList, View } from 'react-native'
+import { View, FlatList } from 'react-native'
 import React from 'react'
 import { setOptionDrawer } from './function';
 import { user } from '../Favorites/product'
 import Card from '../cardProduct/card'
 import { searchProduct } from '../../service/ProductService'
-const womenShoes = ({ navigation, route }) => {
+const menShoes = ({ navigation, route }) => {
     var [items, setItems] = React.useState([])
     React.useEffect(() => {
-        setOptionDrawer(navigation, route.params)
+        setOptionDrawer(navigation, route.params.navigation)
+        navigation.setOptions({
+            headerTitle: route.params.title,
+        })
         searchProduct((data) => {
             setItems(data)
-        }, 'Women', '')
+        }, route.params.tag, '')
     }, [])
     return (
         <View>
@@ -21,4 +24,5 @@ const womenShoes = ({ navigation, route }) => {
         </View>
     )
 }
-export default womenShoes
+
+export default menShoes
