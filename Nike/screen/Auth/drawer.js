@@ -14,23 +14,25 @@ import {
   MaterialCommunityIcons,
   Feather,
   SimpleLineIcons,
+  AntDesign,
 } from "@expo/vector-icons";
 import discover from "../discover/discover";
 import shop from "../shop/shopHome";
 import order from "../order/order";
 import favorites from "../Favorites/favorites";
-
+import cart from "../cart/cart";
+import { useSelector } from "react-redux";
 
 const Drawer = createDrawerNavigator();
 
-export default function MyDrawer({ navigation, route }) {
-  var user = route.params
+export default function MyDrawer({ navigation }) {
+  var user = useSelector((state) => state.data);
   console.log(user);
   return (
     <Drawer.Navigator
       useLegacyImplementation={false}
       screenOptions={{
-        headerStyle:{height:50,backgroundColor:"white"},
+        headerStyle: { height: 50, backgroundColor: "white" },
       }}
       drawerContent={(props) => {
         return (
@@ -114,7 +116,6 @@ export default function MyDrawer({ navigation, route }) {
         component={shop}
         initialParams={user}
         options={{
-          
           drawerIcon: () => (
             <MaterialCommunityIcons
               name="archive-search-outline"
@@ -138,6 +139,16 @@ export default function MyDrawer({ navigation, route }) {
         initialParams={user}
         options={{
           drawerIcon: () => <Feather name="heart" size={24} color="black" />,
+        }}
+      />
+      <Drawer.Screen
+        name="Cart"
+        component={cart}
+        initialParams={user}
+        options={{
+          drawerIcon: () => (
+            <AntDesign name="shoppingcart" size={24} color="black" />
+          ),
         }}
       />
     </Drawer.Navigator>

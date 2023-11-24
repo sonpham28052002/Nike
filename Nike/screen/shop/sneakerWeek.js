@@ -1,28 +1,34 @@
-import { View } from 'react-native'
-import React from 'react'
-import { setOptionDrawer } from './function';
-import { getAllProduct } from '../../service/ProductService';
-import { calcStar } from '../../function/calculator';
-import Card from '../cardProduct/card'
-import { user } from '../Favorites/product'
+import { View } from "react-native";
+import React from "react";
+import { setOptionDrawer } from "./function";
+import { getAllProduct } from "../../service/ProductService";
+import { calcStar } from "../../function/calculator";
+import Card from "../cardProduct/card";
+import { useSelector } from "react-redux";
 const sneakerWeek = ({ navigation, route }) => {
-  var [items, setItems] = React.useState([])
-  React.useEffect(() => {
-    setOptionDrawer(navigation, route.params)
-    getAllProduct((data) => {
-      setItems(data)
-    })
-  }, [])
-  return (
-    <View style={{flexDirection: 'row', flexWrap:'wrap', justifyContent:'flex-start'}}>
-      {
-        items.map((item) => {
-          if (calcStar(item.feedbacks) >= 4)
-            return <Card value={item} user={user} />
-        })
-      }
-    </View>
-  )
-}
+  var user = useSelector((state) => state.data);
 
-export default sneakerWeek
+  var [items, setItems] = React.useState([]);
+  React.useEffect(() => {
+    setOptionDrawer(navigation, route.params);
+    getAllProduct((data) => {
+      setItems(data);
+    });
+  }, []);
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "flex-start",
+      }}
+    >
+      {items.map((item) => {
+        if (calcStar(item.feedbacks) >= 4)
+          return <Card value={item} user={user} />;
+      })}
+    </View>
+  );
+};
+
+export default sneakerWeek;

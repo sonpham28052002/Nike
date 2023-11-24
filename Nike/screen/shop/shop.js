@@ -4,9 +4,10 @@ import { FontAwesome } from '@expo/vector-icons';
 import styles from './style'
 import React from 'react';
 import Card from '../cardProduct/card'
-import { user } from '../Favorites/product'
 import { getProductBestSellers, searchProduct } from '../../service/ProductService';
+import { useSelector } from 'react-redux';
 export default function shop({ navigation, route }) {
+  var user = useSelector((state)=> state.data)
   const dataWeekHighlight = [{
     name: 'Sneakers of the Week',
     img: require('./assets/sneakersOfTheWeek.png')

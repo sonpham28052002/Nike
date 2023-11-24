@@ -3,9 +3,11 @@ import React from 'react'
 import { setOptionDrawer } from './function';
 import { searchProduct } from '../../service/ProductService';
 import Card from '../cardProduct/card'
-import { user } from '../Favorites/product'
+import { useSelector } from 'react-redux';
 const topRoad = ({ navigation, route }) => {
   var [items, setItems] = React.useState([])
+  var user = useSelector  ((state) => state.data);
+
   React.useEffect(() => {
     setOptionDrawer(navigation, route.params.navigation)
     navigation.setOptions({

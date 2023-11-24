@@ -1,14 +1,13 @@
-var getUserByID =  (callback, id) => {
-   return fetch("http://localhost:8080/user/id=" + id)
-    .then((response) => response.json()).then((data)=> callback(data))
+var putBag = (bag, user_id, product_id) => {
+  return fetch(
+    `http://localhost:8080/bag/user_id=${user_id}&product_id=${product_id}`,
+    {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bag),
+    }
+  ).then((res)=> res.json());
 };
-var insertUser = async (user) => {
-  await fetch("http://localhost:8080/user", {
-    method: "put",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  }).catch((error) => console.log(error));
-};
-export { getUserByID, insertUser };
+export { putBag };
