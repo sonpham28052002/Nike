@@ -37,7 +37,7 @@ var styles = StyleSheet.create({
     fontWeight: "900",
     textAlign: "center",
     marginBottom: 20,
-    fontStyle: "italic",
+    fontStyle:"italic"
   },
   viewSub: {
     flexDirection: "row",

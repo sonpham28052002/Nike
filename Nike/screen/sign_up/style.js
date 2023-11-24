@@ -4,6 +4,7 @@ var styles = StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
     padding: 10,
+    width:"100",
     alignItems: "center",
   },
   TextInput: {
@@ -14,7 +15,7 @@ var styles = StyleSheet.create({
     borderColor: "",
     marginVertical: 5,
     paddingLeft: 40,
-    paddingRight: 10,
+    paddingRight:10,
     fontWeight: "500",
     fontSize: 15,
   },
@@ -29,15 +30,18 @@ var styles = StyleSheet.create({
     backgroundColor: "black",
   },
   imageLogo: {
-    height: 90,
-    marginTop: -65,
+    width: "200%",
+    height:"120%",
+    position:"absolute",
+    left:"-50%",
+    top:20,          
   },
   title: {
     fontSize: 30,
     fontWeight: "900",
     textAlign: "center",
-    marginBottom: 20,
-    fontStyle: "italic",
+    marginBottom: 10,
+    fontStyle:"italic"
   },
   viewSub: {
     flexDirection: "row",
