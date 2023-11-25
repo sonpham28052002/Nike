@@ -35,7 +35,6 @@ public class FeedBackResource {
         Product product = productRepository.findById(product_id).get();
         FeedBack_ID feelBackId =new FeedBack_ID(user,product);
         return feedbackRepository.findById(feelBackId).get();
-
     }
     @PutMapping(value = "user_id={user_id}&product_id={product_id}")
     public boolean insertFeelBack(@PathVariable String user_id, @PathVariable long product_id , @RequestBody FeedBack feedback){

@@ -13,15 +13,19 @@ import { HelperText, Checkbox } from "react-native-paper";
 import { Dialog } from "@rneui/themed";
 import { FIREBASE_AUTH } from "../../config_Firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { getAPI } from "../../redux-toolkit/slices";
 export default function sign_in({ navigation }) {
   const auth = FIREBASE_AUTH;
   var [email, setEmail] = React.useState("sonpham28052002@gmail.com");
-  var [password, setPassword] = React.useState("sonpham");
+  var [password, setPassword] = React.useState("sonpham28052002");
   var [checked, setCheck] = React.useState(false);
   var [isLoading, setLoading] = React.useState(false);
   var [visibleError, setVisibleError] = React.useState(false);
   var [visibleErrorPass, setVisibleErrorPass] = React.useState(false);
 
+  var data = useSelector((state) => state);
+  var dispatch = useDispatch();
   var login = async (email, password) => {
     setLoading(true);
     if (hasErrorEmail() && hasErrorPassword()) {
@@ -31,16 +35,18 @@ export default function sign_in({ navigation }) {
           email,
           password
         );
-        console.log(response);
         if (!response.user.emailVerified) {
           setVisibleError(true);
         }
-        setLoading(false);
+        dispatch(getAPI(response.user.uid));
+        setLoading(true);
+        navigation.navigate("Home")
       } catch (error) {
         setVisibleErrorPass(true);
         setLoading(false);
       }
     }
+    setLoading(false);
   };
   const hasErrorEmail = () => {
     return email == undefined || email.includes("@");

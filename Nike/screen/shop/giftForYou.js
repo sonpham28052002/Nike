@@ -1,10 +1,12 @@
 import { View, FlatList } from 'react-native'
 import React from 'react'
 import { setOptionDrawer } from './function';
-import { user } from '../Favorites/product'
 import Card from '../cardProduct/card'
 import { searchProduct } from '../../service/ProductService'
+import { useSelector } from 'react-redux';
 const menShoes = ({ navigation, route }) => {
+    var user = useSelector((state) => state.data);
+
     var [items, setItems] = React.useState([])
     React.useEffect(() => {
         setOptionDrawer(navigation, route.params.navigation)

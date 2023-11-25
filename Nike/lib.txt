@@ -32,3 +32,4 @@
 	+ npm install --save currency.js
 - redux-toolkit
 	+ npm install @reduxjs/toolkit react-redux
+npm install react-native-ui-lib

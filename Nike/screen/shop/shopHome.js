@@ -17,13 +17,13 @@ import ShowListCard from "./showListCard";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import styles from "./style";
 import { Badge } from "@rneui/base";
+import card from '../cardProduct/card.js'
 
 const Stack = createNativeStackNavigator();
 const shopHome = ({ navigation, route }) => {
   //user
-  var user = route.params
-  console.log(navigation);
   const navigate = useNavigation()
+  console.log(navigation);
   return (
     // <NavigationContainer>
     <Stack.Navigator
@@ -82,6 +82,8 @@ const shopHome = ({ navigation, route }) => {
 
       {/* Show List Card */}
       <Stack.Screen name="Show List Card" component={ShowListCard} />
+      <Stack.Screen component={card} name="cart" />
+
     </Stack.Navigator>
   );
 };
