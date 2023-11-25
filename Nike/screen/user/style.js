@@ -9,8 +9,9 @@ export default styles = StyleSheet.create({
     button: {
         borderWidth: 1,
         borderColor: 'gray',
+        paddingVertical: 10,
         width: '80%',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center'
     },
     textSubTitle: {
@@ -18,10 +19,19 @@ export default styles = StyleSheet.create({
         marginVertical: 10,
         fontWeight: 500
     },
-    viewIcon: {
-        height: 60,
-        marginRight: 10,
+    viewButton: { 
+        flexDirection: 'row', 
+        width: '100%', 
+        justifyContent: 'space-between', 
+        padding: 10, 
+        marginTop: 20,
+        borderBottomWidth: 1,
+        borderColor: 'gray'
+    },
+    buttonNavigate:{
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginHorizontal: 5,
+        width: '20%'
     }
 })
