@@ -24,6 +24,8 @@ public class Order {
     private User user;
 
     @Column
+    private String address;
+    @Column
     private LocalDate order_date;
 
     @OneToMany(mappedBy = "order")

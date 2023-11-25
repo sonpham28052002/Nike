@@ -6,8 +6,9 @@ import React from 'react';
 import Card from '../cardProduct/card'
 import { getProductBestSellers, searchProduct } from '../../service/ProductService';
 import { useSelector } from 'react-redux';
+import { LinearGradient } from 'expo-linear-gradient';
 export default function shop({ navigation, route }) {
-  var user = useSelector((state)=> state.data)
+  var user = useSelector((state) => state.data)
   const dataWeekHighlight = [{
     name: 'Sneakers of the Week',
     img: require('./assets/sneakersOfTheWeek.png')
@@ -137,29 +138,35 @@ export default function shop({ navigation, route }) {
               setShowSale(false)
             }}
           >
-            <Text style={styles.headerListItem}>Hot</Text>
-            <Image style={{width: 100, height: 100}} resizeMethod='contain' source={require('./assets/hot.png')} />
+            <LinearGradient style={styles.buttonGradient}
+              colors={['#f53535', '#ff00ed', '#1669ff', '#8454fe', '#53c6fe', '#5affe1', '#fec0e6']}
+              start={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 0 }}
+            >
+              <Text style={styles.textGradient}>Hot</Text>
+              <Image style={{ width: 100, height: 100 }} resizeMethod='contain' source={require('./assets/hot.png')} />
+            </LinearGradient>
           </TouchableOpacity>
           {
             showHot ?
               <View style={styles.itemListChild}>
                 <TouchableOpacity style={styles.buttonListChild}
-                 onPress={() => {
-                  route.params.setOptions({
-                    headerShown: false
-                  })
-                  navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: 'New' })
-                }}
+                  onPress={() => {
+                    route.params.setOptions({
+                      headerShown: false
+                    })
+                    navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: 'New' })
+                  }}
                 >
                   <Text style={styles.textItem}>New</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonListChild}
-                onPress={() => {
-                  route.params.setOptions({
-                    headerShown: false
-                  })
-                  navigation.navigate('Our BestSellers', {navigation: route.params, title: 'Top Pick'})
-                }}
+                  onPress={() => {
+                    route.params.setOptions({
+                      headerShown: false
+                    })
+                    navigation.navigate('Our BestSellers', { navigation: route.params, title: 'Top Pick' })
+                  }}
                 >
                   <Text style={styles.textItem}>Top Pick</Text>
                 </TouchableOpacity>
@@ -174,8 +181,14 @@ export default function shop({ navigation, route }) {
               setShowSale(!showSale)
             }}
           >
-            <Text style={styles.headerListItem}>Sales</Text>
+            <LinearGradient style={styles.buttonGradient}
+              colors={['#f53535', '#ff00ed', '#1669ff', '#8454fe', '#53c6fe', '#5affe1', '#fec0e6']}
+              start={{ x: 0, y: 1 }}
+        end={{ x: 1, y: 0 }}
+            >
+            <Text style={styles.textGradient}>Sales</Text>
             <Image style={{ width: 120, height: 100 }} resizeMethod='contain' source={require('./assets/sale.png')} />
+            </LinearGradient>
           </TouchableOpacity>
           {
             showSale ?
