@@ -7,8 +7,6 @@ import {
   TextInput,
   ActivityIndicator,
 } from "react-native";
-import { A } from "@expo/html-elements";
-
 import { Entypo, AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./style";
 import { HelperText, Checkbox } from "react-native-paper";

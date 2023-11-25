@@ -1,6 +1,3 @@
-- checkBox
-	npx expo install expo-checkbox
-
 - navigation
 	+ Stack
 		npm install @react-navigation/native
@@ -19,9 +16,6 @@
 		],
 		npm start -- --reset-cache
 		npx expo install --fix 
-
-- Rating
-	+ npm i react-native-ratings
 - react native paper
 	+ https://callstack.github.io/react-native-paper/docs/guides/getting-started
 - react-native-swiper-flatlist
@@ -32,4 +26,7 @@
 	+ npm install --save currency.js
 - redux-toolkit
 	+ npm install @reduxjs/toolkit react-redux
-npm install react-native-ui-lib
+- react-native-ui-lib
+	+ npm install react-native-ui-lib
+- LinearGradient
+	+ npx expo install expo-linear-gradient
