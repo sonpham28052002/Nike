@@ -28,7 +28,9 @@ public class UserResource {
 
     @PutMapping(value = "id={id}")
     public boolean update(@PathVariable("id") String id, @RequestBody User user) {
-        user.setId(id);
+        if (userRepository.findById(id).isEmpty()){
+            return false;
+        }
         try {
             userRepository.save(user);
             return true;
@@ -38,8 +40,11 @@ public class UserResource {
 
     }
 
-    @PutMapping
+    @PostMapping
     public boolean insert(@RequestBody User user) {
+        if (!userRepository.findById(user.getId()).isEmpty()){
+            return false;
+        }
         try {
             userRepository.save(user);
             return true;

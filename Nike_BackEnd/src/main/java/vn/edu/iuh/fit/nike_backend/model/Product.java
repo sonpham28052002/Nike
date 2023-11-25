@@ -1,6 +1,7 @@
 package vn.edu.iuh.fit.nike_backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,9 +38,13 @@ public class Product {
     @Column
     private int discount;
     @Column
-    private String bags;
-    @Column
     private String favorites;
+
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
+    @Column(name = "bags")
+    @JsonIgnore
+    private List<Bag> bags;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     @Column(name = "product_image")

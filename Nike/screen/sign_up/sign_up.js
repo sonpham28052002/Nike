@@ -14,14 +14,15 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 import { styles } from "./style";
-import { HelperText, Checkbox } from "react-native-paper";
+import { HelperText } from "react-native-paper";
 import { Dialog } from "@rneui/themed";
 import { FIREBASE_AUTH } from "../../config_Firebase";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
-import { insertUser } from "../../service/UserService";
+import { postAPI } from "../../redux-toolkit/slices";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function sign_up({ navigation }) {
   const auth = FIREBASE_AUTH;
@@ -32,7 +33,10 @@ export default function sign_up({ navigation }) {
   var [isLoading, setLoading] = React.useState(false);
   var [visibleSuccess, setVisibleSuccess] = React.useState(false);
   var [visibleError, setVisibleError] = React.useState(false);
-
+  
+  var data = useSelector((state) => state);
+  var dispatch = useDispatch()
+  console.log(data);
   var signup = async (email, password) => {
     setLoading(true);
     if (
@@ -43,7 +47,7 @@ export default function sign_up({ navigation }) {
       hasErrorEmail() &&
       hasErrorPassword() &&
       hasErrorRePassword() &&
-      hasErrorUserName
+      hasErrorUserName()
     ) {
       try {
         const response = await createUserWithEmailAndPassword(
@@ -51,15 +55,15 @@ export default function sign_up({ navigation }) {
           email,
           password
         );
-        console.log(response.user);
         await sendEmailVerification(response.user);
         let user = {
           id: response.user.uid,
           email: response.user.email,
           name: name,
+          status:true
         };
-        console.log(user);
-        insertUser(user);
+        dispatch(postAPI(user))
+        console.log(data.isSussecc);
         setVisibleSuccess(true);
       } catch (error) {
         setVisibleError(true);

@@ -4,17 +4,13 @@ var styles = StyleSheet.create({
   card: {
     width: "47%",
     height: 250,
-    borderWidth: 1,
-    borderRadius: 10,
     padding: 1,
     margin: 5,
   },
   imageProduct: {
     height: 150,
     width: "100%",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    backgroundColor:"white"
+    backgroundColor: "white",
   },
   textStar: {
     fontSize: 10,
@@ -24,13 +20,14 @@ var styles = StyleSheet.create({
     color: "gray",
   },
   imageDiscount: { height: 60, width: 60, position: "absolute", right: 5 },
-  textPrice:{
+  textPrice: {
     fontWeight: "400",
     fontSize: 12,
     textDecorationLine: "line-through",
     color: "gray",
     fontWeight: "500",
-  },boxShadown: {
+  },
+  boxShadown: {
     shadowColor: "#171717",
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.2,

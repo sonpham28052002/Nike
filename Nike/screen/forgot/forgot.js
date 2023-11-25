@@ -13,7 +13,7 @@ import { HelperText } from "react-native-paper";
 import { Dialog } from "@rneui/themed";
 import { FIREBASE_AUTH } from "../../config_Firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
-export default function forgot({navigation}) {
+export default function forgot({ navigation }) {
   const auth = FIREBASE_AUTH;
   var [email, setEmail] = React.useState(undefined);
   var [isLoading, setLoading] = React.useState(false);
@@ -32,6 +32,7 @@ export default function forgot({navigation}) {
         setLoading(false);
       }
     }
+    setLoading(false);
   };
   const hasErrorEmail = () => {
     return email == undefined || email.includes("@");
@@ -92,8 +93,8 @@ export default function forgot({navigation}) {
         <Text style={{ textAlign: "center" }}>
           Create new account?
           <TouchableOpacity
-            onPress={()=>{
-              navigation.navigate("signin")
+            onPress={() => {
+              navigation.navigate("signin");
             }}
           >
             <Text style={{ fontWeight: "bold" }}> Sign In</Text>

@@ -8,20 +8,12 @@ import {
   Easing,
   ActivityIndicator,
 } from "react-native";
-import { getAllProduct,getProductByID } from "../../service/ProductService";
 export default function Splash({ navigation }) {
-  // var [product,setProduct] = React.useState(undefined)
-  
-  // React.useEffect(()=>{
-  //   getProductByID((apiData) => {
-  //    console.log(apiData);},1)
-    
-  // },[])
   
   const fadeAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate("Home");
+      navigation.navigate("signin");
     }, 2000);
     return () => clearTimeout(timer);
   }, []);

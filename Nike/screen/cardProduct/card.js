@@ -7,19 +7,22 @@ import { styles } from "./style";
 import { getImage } from "../../function/getImage";
 import { getImageDiscount } from "../../function/getImageDiscount";
 import { calcStar } from "../../function/calculator";
+import { useDispatch, useSelector } from "react-redux";
+import { putAPI } from "../../redux-toolkit/slices";
+import { useNavigation } from "@react-navigation/native";
+export default function app({value,user}) {
+  const navigation = useNavigation();
+  console.log(navigation);
+  var [product, setProduct] = React.useState(value);
+  var [user, setUser] = React.useState(user);
+  var data = useSelector((state) => state);
+  var dispatch = useDispatch();
 
-export default function app(props) {
-  var [product, setProduct] = React.useState(props.value);
-  var [user, setUser] = React.useState(props.user);
+  console.log("sio");
   console.log(user);
-  var listFavories =
-    user.favorites === null || user.favorites == ""
-      ? []
-      : user.favorites.split(",");
-  var isfavorites =
-    listFavories.filter((item) => Number.parseInt(item) == product.id)[0] !=
-    undefined;
-  var [isFavorites, setIsFavorites] = React.useState(isfavorites);
+  var [isFavorites, setIsFavorites] = React.useState(
+    user.favorites.includes(Number.parseInt(product.id))
+  );
   var star = calcStar(product.feedbacks);
   var price = currency(product.price, {
     symbol: "đ",
@@ -31,7 +34,12 @@ export default function app(props) {
     { symbol: "đ", separator: ",", precision: 0 }
   ).format();
   return (
-    <TouchableOpacity style={[styles.card, styles.boxShadown]}>
+    <TouchableOpacity
+      style={[styles.card, styles.boxShadown]}
+      onPress={() => {
+        navigation.navigate("productDetail",product);
+      }}
+    >
       <View>
         <Image
           style={styles.imageProduct}
@@ -114,14 +122,16 @@ export default function app(props) {
           style={{ position: "absolute", left: 10, top: 5 }}
           onPress={() => {
             if (isFavorites) {
-              listFavories = listFavories.filter(
-                (item) => Number.parseInt(item) != product.id
-              );
-              user.favorites = listFavories.join(",");
+              let a = { ...user };
+              a.favorites = user.favorites.filter((item) => item != product.id);
+              dispatch(putAPI(a));
+              setUser(a);
               setIsFavorites(false);
             } else {
-              listFavories.push(product.id);
-              user.favorites = listFavories.join(",");
+              let b = { ...user };
+              b.favorites = [...user.favorites, product.id];
+              dispatch(putAPI(b));
+              setUser(b);
               setIsFavorites(true);
             }
           }}

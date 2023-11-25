@@ -3,8 +3,9 @@ import React from 'react'
 import { setOptionDrawer } from './function';
 import { getProductBestSellers } from '../../service/ProductService';
 import Card from '../cardProduct/card'
-import { user } from '../Favorites/product'
+import { useSelector } from 'react-redux';
 const ourBestSellers = ({ navigation, route }) => {
+  var user = useSelector((state)=> state.data)
   var [items, setItems] = React.useState([])
   React.useEffect(() => {
     setOptionDrawer(navigation, route.params)
