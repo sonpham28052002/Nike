@@ -10,7 +10,7 @@ export default function shopAll({navigation, route}) {
 
   var [items, setItems] = React.useState([])
   React.useEffect(()=>{
-    setOptionDrawer(navigation, route.params)
+    setOptionDrawer(navigation, route.params, "Shop All", "Shop")
     getAllProduct((data) => {
       setItems(data)
     })

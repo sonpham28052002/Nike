@@ -9,9 +9,7 @@ import Discount from "./discount";
 import ShopAll from "./shopAll";
 import GiftForYou from "./giftForYou";
 import OurBestSellers from "./ourBestSellers";
-import TopRoad from "./topRoad";
 import JustIn from "./justIn"
-import Brand from "./brand";
 import Search from "./search";
 import ShowListCard from "./showListCard";
 import { Feather, FontAwesome } from "@expo/vector-icons";
@@ -68,14 +66,8 @@ const shopHome = ({ navigation, route }) => {
       {/* Our BestSellers */}
       <Stack.Screen name="Our BestSellers" component={OurBestSellers} />
 
-      {/* Top Road */}
-      <Stack.Screen name="Top Road" component={TopRoad} />
-
       {/* JustIn */}
       <Stack.Screen name="Just In" component={JustIn} />
-
-      {/* Brand */}
-      <Stack.Screen name="Brand" component={Brand} />
 
       {/* Search */}
       <Stack.Screen name="Search" component={Search} />

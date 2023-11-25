@@ -9,10 +9,7 @@ const menShoes = ({ navigation, route }) => {
 
     var [items, setItems] = React.useState([])
     React.useEffect(() => {
-        setOptionDrawer(navigation, route.params.navigation)
-        navigation.setOptions({
-            headerTitle: route.params.title,
-        })
+        setOptionDrawer(navigation, route.params.navigation, route.params.title, "Shop")
         searchProduct((data) => {
             setItems(data)
         }, route.params.tag, '')

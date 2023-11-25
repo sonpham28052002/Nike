@@ -1,15 +1,19 @@
 import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-const setOptionDrawer = (navigation, routeParams) => {
+const setOptionDrawer = (navigation, routeParams, title, back) => {
     navigation.setOptions({
+        headerTitle: title,
         headerLeft: () => (
             <TouchableOpacity
                 onPress={() => {
-                    routeParams.setOptions({
-                        headerShown: true
+                    if (back == 'Shop'){
+                        routeParams.setOptions({
+                            headerShown: true
                     })
                     navigation.navigate("Shop", routeParams);
+                    } else
+                    navigation.navigate("Search", routeParams);
                 }}
             >
                 <AntDesign

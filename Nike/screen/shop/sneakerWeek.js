@@ -6,29 +6,24 @@ import { calcStar } from "../../function/calculator";
 import Card from "../cardProduct/card";
 import { useSelector } from "react-redux";
 const sneakerWeek = ({ navigation, route }) => {
-  var user = useSelector((state) => state.data);
-
-  var [items, setItems] = React.useState([]);
+var user = useSelector((state) => state.data);  
+var [items, setItems] = React.useState([])
   React.useEffect(() => {
-    setOptionDrawer(navigation, route.params);
+    setOptionDrawer(navigation, route.params, "Sneakers of the Week", "Shop")
     getAllProduct((data) => {
-      setItems(data);
-    });
-  }, []);
+      setItems(data)
+    })
+  }, [])
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "flex-start",
-      }}
-    >
-      {items.map((item) => {
-        if (calcStar(item.feedbacks) >= 4)
-          return <Card value={item} user={user} />;
-      })}
+    <View style={{flexDirection: 'row', flexWrap:'wrap', justifyContent:'flex-start'}}>
+      {
+        items.map((item) => {
+          if (calcStar(item.feedbacks) >= 4)
+            return <Card value={item} user={user} />
+        })
+      }
     </View>
-  );
-};
+  )
+}
 
 export default sneakerWeek;
