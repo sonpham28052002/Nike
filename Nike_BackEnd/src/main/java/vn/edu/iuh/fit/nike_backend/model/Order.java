@@ -3,6 +3,7 @@ package vn.edu.iuh.fit.nike_backend.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import vn.edu.iuh.fit.nike_backend.enums.OrderStatus;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,6 +26,13 @@ public class Order {
 
     @Column
     private String address;
+
+    @Column(name = "delivery_status")
+    private OrderStatus deliveryStatus;
+
+    @Column
+    private boolean paid;
+
     @Column
     private LocalDate order_date;
 
