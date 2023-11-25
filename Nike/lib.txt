@@ -30,3 +30,4 @@
 	+ npm install react-native-ui-lib
 - LinearGradient
 	+ npx expo install expo-linear-gradient
+npm i react-native-swipe-list-view
