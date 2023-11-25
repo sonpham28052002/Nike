@@ -9,7 +9,7 @@ const discount = ({navigation, route}) => {
   var user = useSelector((state)=> state.data)
   var [items, setItems] = React.useState([])
   React.useEffect(()=>{
-    setOptionDrawer(navigation, route.params)
+    setOptionDrawer(navigation, route.params, "Discount", "Shop")
     getProductDiscount((data)=>{
       setItems(data)
     })

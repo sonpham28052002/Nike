@@ -8,7 +8,9 @@ import {
 } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import { styles } from "./style";
+import { useNavigation } from "@react-navigation/core";
 export default function discover() {
+  var navigation = useNavigation()
   var arr = [
     {
       id: 1,

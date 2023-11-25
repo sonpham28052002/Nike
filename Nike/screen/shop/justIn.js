@@ -9,7 +9,7 @@ const topRoad = ({ navigation, route }) => {
   var user = useSelector((state) => state.data);
 
   React.useEffect(() => {
-    setOptionDrawer(navigation, route.params.navigation)
+    setOptionDrawer(navigation, route.params, "Just In", "Shop")
     searchProduct((data) => {
       setItems(data)
     }, 'JustIn', '')

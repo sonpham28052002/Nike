@@ -8,7 +8,7 @@ const ourBestSellers = ({ navigation, route }) => {
   var user = useSelector((state)=> state.data)
   var [items, setItems] = React.useState([])
   React.useEffect(() => {
-    setOptionDrawer(navigation, route.params)
+    setOptionDrawer(navigation, route.params.navigation, route.params.title, "Shop")
     getProductBestSellers((data) => {
       setItems(data)
     }, -1)

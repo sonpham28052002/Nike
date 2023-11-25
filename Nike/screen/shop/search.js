@@ -10,20 +10,19 @@ const search = ({ navigation, route }) => {
     const [text, setText] = useState('');
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: () => {
-                return (
-                    <View style={{ width: '100%' }}>
-                        <TextInput style={styles.input}
-                            onChangeText={setText}
-                            placeholder='Search Products'
-                            placeholderTextColor={'gray'}
-                        />
-                    </View>
-                )
-            },
             headerRight: null
         })
-        setOptionDrawer(navigation, route.params)
+        setOptionDrawer(navigation, route.params, () => {
+            return (
+                <View style={{ width: '100%' }}>
+                    <TextInput style={styles.input}
+                        onChangeText={setText}
+                        placeholder='Search Products'
+                        placeholderTextColor={'gray'}
+                    />
+                </View>
+            )
+        }, "Shop")
         getAllProduct((data) => {
             setItems(data)
         })
@@ -43,7 +42,7 @@ const search = ({ navigation, route }) => {
                 renderItem={({ item }) => {
                     return <TouchableOpacity style={{ marginVertical: 10, justifyContent: 'center', paddingHorizontal: 10 }}
                         onPress={() => {
-                            navigation.navigate("Show List Card", { navigation: route.params, name: item })
+                            navigation.navigate("Show List Card", { navigation: route.params, back: "Search", name: item })
                         }}
                     >
                         <Text style={styles.textItem}>{item}</Text>
