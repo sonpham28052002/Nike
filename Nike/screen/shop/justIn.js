@@ -7,7 +7,7 @@ import { user } from '../Favorites/product'
 const topRoad = ({ navigation, route }) => {
   var [items, setItems] = React.useState([])
   React.useEffect(() => {
-    setOptionDrawer(navigation, route.params.navigation)
+    setOptionDrawer(navigation, route.params, "Just In", "Shop")
     searchProduct((data) => {
       setItems(data)
     }, 'JustIn', '')

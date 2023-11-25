@@ -35,7 +35,7 @@ export default function app(props) {
       <View>
         <Image
           style={styles.imageProduct}
-          resizeMode="cover"
+          resizeMode="contain"
           source={getImage(product.id, product.productImages[0].path)}
         />
         <View style={{ padding: 10 }}>

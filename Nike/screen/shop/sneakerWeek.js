@@ -8,7 +8,7 @@ import { user } from '../Favorites/product'
 const sneakerWeek = ({ navigation, route }) => {
   var [items, setItems] = React.useState([])
   React.useEffect(() => {
-    setOptionDrawer(navigation, route.params)
+    setOptionDrawer(navigation, route.params, "Sneakers of the Week", "Shop")
     getAllProduct((data) => {
       setItems(data)
     })

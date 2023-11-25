@@ -61,11 +61,8 @@ export default function shop({ navigation, route }) {
     title: 'ACG',
     img: require('./assets/acg.png')
   }]
-  const dataSearch = ['Dunk', 'AirForce 1', 'Air Jodan 1', 'Air Max', 'Blazer']
-  var [showNew, setShowNew] = React.useState(false)
-  var [showShoes, setShowShoes] = React.useState(false)
-  var [showClothing, setShowClothing] = React.useState(false)
-  var [showAccessories, setShowAccessories] = React.useState(false)
+  const dataSearch = ['Dunk', 'Air Force 1', 'Air Max']
+  var [showHot, setShowHot] = React.useState(false)
   var [showSale, setShowSale] = React.useState(false)
   var [dataBestSeller, setDataBestSellers] = React.useState([])
   var [dataJustIn, setDataJustIn] = React.useState([])
@@ -119,7 +116,7 @@ export default function shop({ navigation, route }) {
                     route.params.setOptions({
                       headerShown: false
                     })
-                    navigation.navigate('Gift For You', {navigation: route.params, title: item.title, tag: item.tag})
+                    navigation.navigate('Gift For You', { navigation: route.params, title: item.title, tag: item.tag })
                   }}
                 >
                   <Image source={item.img} style={styles.imgSmall} />
@@ -134,69 +131,36 @@ export default function shop({ navigation, route }) {
       <View style={styles.itemList}>
         <View>
           <TouchableOpacity style={styles.buttonList}
-            onPress={() => setShowNew(!showNew)}
-          >
-            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>New & Featured</Text>
-            <Image source={require('./assets/newAndFeature.png')} />
-          </TouchableOpacity>
-          {
-            showNew ?
-              <View style={styles.itemListChild}>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-              </View>
-              : null
-          }
-        </View>
-        <View>
-          <TouchableOpacity style={styles.buttonList}
             onPress={() => {
-              setShowNew(false)
-              setShowShoes(!showShoes)
-              setShowClothing(false)
-              setShowAccessories(false)
+              setShowHot(!showHot)
               setShowSale(false)
             }}
           >
-            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Shoes</Text>
-            <Image source={require('./assets/newAndFeature.png')} />
+            <Text style={styles.headerListItem}>Hot</Text>
+            <Image style={{width: 100, height: 100}} resizeMethod='contain' source={require('./assets/hot.png')} />
           </TouchableOpacity>
           {
-            showShoes ?
+            showHot ?
               <View style={styles.itemListChild}>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
+                <TouchableOpacity style={styles.buttonListChild}
+                 onPress={() => {
+                  route.params.setOptions({
+                    headerShown: false
+                  })
+                  navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: 'New' })
+                }}
+                >
+                  <Text style={styles.textItem}>New</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
+                <TouchableOpacity style={styles.buttonListChild}
+                onPress={() => {
+                  route.params.setOptions({
+                    headerShown: false
+                  })
+                  navigation.navigate('Our BestSellers', {navigation: route.params, title: 'Top Pick'})
+                }}
+                >
+                  <Text style={styles.textItem}>Top Pick</Text>
                 </TouchableOpacity>
               </View>
               : null
@@ -205,119 +169,31 @@ export default function shop({ navigation, route }) {
         <View>
           <TouchableOpacity style={styles.buttonList}
             onPress={() => {
-              setShowNew(false)
-              setShowShoes(false)
-              setShowClothing(!showClothing)
-              setShowAccessories(false)
-              setShowSale(false)
-            }}
-          >
-            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Clothing</Text>
-            <Image source={require('./assets/newAndFeature.png')} />
-          </TouchableOpacity>
-          {
-            showClothing ?
-              <View style={styles.itemListChild}>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-              </View>
-              : null
-          }
-        </View>
-        <View>
-          <TouchableOpacity style={styles.buttonList}
-            onPress={() => {
-              setShowNew(false)
-              setShowShoes(false)
-              setShowClothing(false)
-              setShowAccessories(!showAccessories)
-              setShowSale(false)
-            }}
-          >
-            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Accessories</Text>
-            <Image source={require('./assets/newAndFeature.png')} />
-          </TouchableOpacity>
-          {
-            showAccessories ?
-              <View style={styles.itemListChild}>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-              </View>
-              : null
-          }
-        </View>
-        <View>
-          <TouchableOpacity style={styles.buttonList}
-            onPress={() => {
-              setShowNew(false)
-              setShowShoes(false)
-              setShowClothing(false)
-              setShowAccessories(false)
+              setShowHot(false)
               setShowSale(!showSale)
             }}
           >
-            <Text style={[styles.headerListItem, { color: '#FFFFFF' }]}>Sale</Text>
-            <Image source={require('./assets/newAndFeature.png')} />
+            <Text style={styles.headerListItem}>Sales</Text>
+            <Image style={{ width: 120, height: 100 }} resizeMethod='contain' source={require('./assets/sale.png')} />
           </TouchableOpacity>
           {
             showSale ?
               <View style={styles.itemListChild}>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonListChild}>
-                  <Text style={styles.textItem}>New Releases</Text>
+                <TouchableOpacity style={styles.buttonListChild}
+                  onPress={() => {
+                    route.params.setOptions({
+                      headerShown: false
+                    })
+                    navigation.navigate('Discount', route.params)
+                  }}
+                >
+                  <Text style={styles.textItem}>Sales Up To 70%</Text>
                 </TouchableOpacity>
               </View>
               : null
           }
         </View>
       </View>
-
       <View style={styles.item}>
         <Text style={styles.headerListItem}>Our Bestsellers</Text>
         <FlatList data={dataBestSeller}
@@ -335,7 +211,7 @@ export default function shop({ navigation, route }) {
               route.params.setOptions({
                 headerShown: false
               })
-              navigation.navigate('Our BestSellers', route.params)
+              navigation.navigate('Our BestSellers', { navigation: route.params, title: "Our Best Seller" })
             }}
           >
             <Text style={styles.textItem}>View All</Text>
@@ -357,7 +233,7 @@ export default function shop({ navigation, route }) {
                     route.params.setOptions({
                       headerShown: false
                     })
-                    navigation.navigate('Top Road', { navigation: route.params, title: item.title })
+                    navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: item.title })
                   }}
                 >
                   <Image source={item.img} style={styles.imgSmall} />
@@ -368,63 +244,6 @@ export default function shop({ navigation, route }) {
           />
         </ScrollView>
       </View>
-
-      {/* <View style={styles.item}>
-        <Text style={styles.headerListItem}>Your Pegasus Shop</Text>
-        <ScrollView
-          nestedScrollEnabled
-        >
-          <FlatList data={dataWeekHighlight}
-            horizontal
-            renderItem={({ item }) => {
-              return (
-                <View style={{ marginRight: 10 }}>
-                  <Image source={item.img} style={styles.imgLarge} />
-                  <Text style={styles.textItem}>{item.name}</Text>
-                </View>
-              )
-            }}
-          />
-        </ScrollView>
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.headerListItem}>Shop By Sport</Text>
-        <ScrollView
-          nestedScrollEnabled
-        >
-          <FlatList data={dataWeekHighlight}
-            horizontal
-            renderItem={({ item }) => {
-              return (
-                <View style={{ marginRight: 10 }}>
-                  <Image source={item.img} style={styles.imgShop} />
-                  <Text style={styles.textItem}>{item.name}</Text>
-                </View>
-              )
-            }}
-          />
-        </ScrollView>
-      </View>
-
-      <View style={styles.item}>
-        <Text style={styles.headerListItem}>Shop By Icon</Text>
-        <ScrollView
-          nestedScrollEnabled
-        >
-          <FlatList data={dataWeekHighlight}
-            horizontal
-            renderItem={({ item }) => {
-              return (
-                <View style={{ marginRight: 10 }}>
-                  <Image source={item.img} style={styles.imgShop} />
-                  <Text style={styles.textItem}>{item.name}</Text>
-                </View>
-              )
-            }}
-          />
-        </ScrollView>
-      </View> */}
 
       <View style={styles.item}>
         <Text style={styles.headerListItem}>Just In</Text>
@@ -439,12 +258,12 @@ export default function shop({ navigation, route }) {
           alignItems: 'center'
         }}>
           <TouchableOpacity style={styles.buttonViewAll}
-          onPress={() => {
-            route.params.setOptions({
-              headerShown: false
-            })
-            navigation.navigate('Just In', route.params)
-          }}
+            onPress={() => {
+              route.params.setOptions({
+                headerShown: false
+              })
+              navigation.navigate('Just In', route.params)
+            }}
           >
             <Text style={styles.textItem}>View All</Text>
           </TouchableOpacity>
@@ -456,7 +275,14 @@ export default function shop({ navigation, route }) {
         <FlatList data={dataSearch}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity style={{ marginVertical: 10, flexDirection: 'row', alignItems: 'center' }}>
+              <TouchableOpacity style={{ marginVertical: 10, flexDirection: 'row', alignItems: 'center' }}
+                onPress={() => {
+                  route.params.setOptions({
+                    headerShown: false
+                  })
+                  navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: item })
+                }}
+              >
                 <FontAwesome style={{ marginRight: 10 }} name="search" size={24} color="black" />
                 <Text style={styles.textItem}>{item}</Text>
               </TouchableOpacity>
@@ -464,26 +290,6 @@ export default function shop({ navigation, route }) {
           }}
         />
       </View>
-
-      {/* <View style={styles.item}>
-        <Text style={styles.headerListItem}>Recommended For You</Text>
-        <ScrollView
-          nestedScrollEnabled
-        >
-          <FlatList data={dataCart}
-            horizontal
-            renderItem={({ item }) => {
-              return (
-                <View style={{ marginRight: 10 }}>
-                  <Image source={item.img} style={styles.imgMedium} />
-                  <Text style={styles.textItem}>{item.name}</Text>
-                  <Text style={styles.priceItem}>{item.price} </Text>
-                </View>
-              )
-            }}
-          />
-        </ScrollView>
-      </View> */}
 
       <View style={[styles.item, { marginBottom: 10 }]}>
         <Text style={styles.headerListItem}>Shop By Brand</Text>
@@ -499,49 +305,51 @@ export default function shop({ navigation, route }) {
             <Image source={require('./assets/brand1.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
           <TouchableOpacity style={{ width: '33%', borderLeftWidth: 1, borderBottomWidth: 1, borderRightWidth: 1, justifyContent: 'center', alignItems: 'center' }}
-          onPress={() => {
-            route.params.setOptions({
-              headerShown: false
-            })
-            navigation.navigate('Brand', { navigation: route.params, title: 'NikeLab' })
-          }}
+            onPress={() => {
+              route.params.setOptions({
+                headerShown: false
+              })
+              navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: 'NikeLab' })
+              // navigation.navigate('Brand', { navigation: route.params, title: 'NikeLab' })
+            }}
           >
             <Image source={require('./assets/brand2.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
           <TouchableOpacity style={{ width: '33%', borderLeftWidth: 1, borderBottomWidth: 1, justifyContent: 'center', alignItems: 'center' }}
-          onPress={() => {
-            route.params.setOptions({
-              headerShown: false
-            })
-            navigation.navigate('Brand', { navigation: route.params, title: 'Jordan' })
-          }}
+            onPress={() => {
+              route.params.setOptions({
+                headerShown: false
+              })
+              navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: 'Jordan' })
+
+            }}
           >
             <Image source={require('./assets/brand3.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <TouchableOpacity style={{ width: '33%', borderRightWidth: 1, borderTopWidth: 1, justifyContent: 'center', alignItems: 'center' }}
-          onPress={() => {
-            route.params.setOptions({
-              headerShown: false
-            })
-            navigation.navigate('Brand', { navigation: route.params, title: 'Nike Sportswear' })
-          }}
+            onPress={() => {
+              route.params.setOptions({
+                headerShown: false
+              })
+              navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: 'Nike Sportswear' })
+            }}
           >
             <Image source={require('./assets/brand4.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
           <TouchableOpacity style={{ width: '33%', borderTopWidth: 1, borderRightWidth: 1, borderLeftWidth: 1, justifyContent: 'center', alignItems: 'center' }}
-          
+
           >
             <Image source={require('./assets/brand5.png')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
           <TouchableOpacity style={{ width: '33%', borderLeftWidth: 1, borderTopWidth: 1, justifyContent: 'center', alignItems: 'center' }}
-          onPress={() => {
-            route.params.setOptions({
-              headerShown: false
-            })
-            navigation.navigate('Brand', { navigation: route.params, title: 'Nike By You' })
-          }}
+            onPress={() => {
+              route.params.setOptions({
+                headerShown: false
+              })
+              navigation.navigate("Show List Card", { navigation: route.params, back: "Shop", name: 'Nike By You' })
+            }}
           >
             <Image source={require('./assets/brand6.jpg')} resizeMode='contain' style={styles.imgBrand} />
           </TouchableOpacity>
