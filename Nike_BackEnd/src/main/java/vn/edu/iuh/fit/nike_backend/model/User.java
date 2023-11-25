@@ -1,7 +1,11 @@
 package vn.edu.iuh.fit.nike_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -25,8 +29,11 @@ public class User {
     private String image;
     @Column
     private boolean status;
-    @Column
-    private String bag;
+
     @Column
     private String favorites;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    @Column(name = "bags")
+    private List<Bag> bags;
 }

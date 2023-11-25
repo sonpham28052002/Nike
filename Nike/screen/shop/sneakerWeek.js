@@ -1,12 +1,13 @@
-import { View } from 'react-native'
-import React from 'react'
-import { setOptionDrawer } from './function';
-import { getAllProduct } from '../../service/ProductService';
-import { calcStar } from '../../function/calculator';
-import Card from '../cardProduct/card'
-import { user } from '../Favorites/product'
+import { View } from "react-native";
+import React from "react";
+import { setOptionDrawer } from "./function";
+import { getAllProduct } from "../../service/ProductService";
+import { calcStar } from "../../function/calculator";
+import Card from "../cardProduct/card";
+import { useSelector } from "react-redux";
 const sneakerWeek = ({ navigation, route }) => {
-  var [items, setItems] = React.useState([])
+var user = useSelector((state) => state.data);  
+var [items, setItems] = React.useState([])
   React.useEffect(() => {
     setOptionDrawer(navigation, route.params, "Sneakers of the Week", "Shop")
     getAllProduct((data) => {
@@ -25,4 +26,4 @@ const sneakerWeek = ({ navigation, route }) => {
   )
 }
 
-export default sneakerWeek
+export default sneakerWeek;

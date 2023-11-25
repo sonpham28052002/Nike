@@ -2,10 +2,11 @@ import { View, FlatList } from 'react-native'
 import React from 'react'
 import { setOptionDrawer } from './function';
 import { getProductBestSellersOfWeek } from '../../service/ProductService';
-import {user} from '../Favorites/product'
 import Card from '../cardProduct/card'
+import { useSelector } from 'react-redux';
 
 const bestSeller = ({navigation, route}) => {
+  var user = useSelector((state)=> state.data)
   var [items, setItems] = React.useState([])
   React.useEffect(()=>{
     setOptionDrawer(navigation, route.params, "Best Sellers", "Shop")

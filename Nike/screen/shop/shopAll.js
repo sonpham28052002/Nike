@@ -3,9 +3,11 @@ import React from 'react'
 import { setOptionDrawer } from './function';
 import { getAllProduct } from '../../service/ProductService';
 import Card from '../cardProduct/card'
-import {user} from '../Favorites/product'
+import { useSelector } from 'react-redux';
 
 export default function shopAll({navigation, route}) {
+  var user = useSelector((state) => state.data);
+
   var [items, setItems] = React.useState([])
   React.useEffect(()=>{
     setOptionDrawer(navigation, route.params, "Shop All", "Shop")

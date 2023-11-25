@@ -1,13 +1,14 @@
 import { View, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { AntDesign } from "@expo/vector-icons";
-import { user } from '../Favorites/product'
 import Card from '../cardProduct/card'
 import { setOptionDrawer } from './function';
 import { searchProduct } from '../../service/ProductService';
+import { useSelector } from 'react-redux';
 
 const showListCard = ({ navigation, route }) => {
     var [items, setItems] = React.useState([])
+    var user = useSelector((state)=> state.data)
     React.useEffect(() => {
         setOptionDrawer(navigation, route.params.navigation, route.params.name, route.params.back)
         searchProduct((data) => {
