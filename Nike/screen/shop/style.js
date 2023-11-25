@@ -12,14 +12,18 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15
     },
     buttonList: {
-        flexDirection: 'row',
         width: '100%',
         marginTop: 5,
         justifyContent: 'space-between',
-        backgroundColor: 'lightblue',
         alignItems: 'center',
+    },
+    buttonGradient:{
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between',
         paddingLeft: 15,
-        paddingRight: 35
+        paddingRight: 35,
+        alignItems: 'center',
     },
     buttonListChild:{
         borderBottomWidth: 1,
@@ -53,7 +57,13 @@ const styles = StyleSheet.create({
     headerListItem: {
         fontSize: 25,
         fontWeight: 700,
-        marginVertical: 10
+        marginVertical: 10,
+    },
+    textGradient:{
+        fontSize: 40,
+        fontWeight: 700,
+        marginVertical: 20,
+        color: 'white',
     },
     textItem: {
         fontSize: 20,
