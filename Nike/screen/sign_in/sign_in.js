@@ -7,6 +7,8 @@ import {
   TextInput,
   ActivityIndicator,
 } from "react-native";
+import { A } from "@expo/html-elements";
+
 import { Entypo, AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { styles } from "./style";
 import { HelperText, Checkbox } from "react-native-paper";
@@ -40,7 +42,7 @@ export default function sign_in({ navigation }) {
         }
         dispatch(getAPI(response.user.uid));
         setLoading(true);
-        navigation.navigate("Home")
+        navigation.navigate("Home");
       } catch (error) {
         setVisibleErrorPass(true);
         setLoading(false);
@@ -153,7 +155,7 @@ export default function sign_in({ navigation }) {
           )}
         </TouchableOpacity>
         <Text style={{ textAlign: "center" }}>
-          Create new account?
+          Create new account
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("signup");

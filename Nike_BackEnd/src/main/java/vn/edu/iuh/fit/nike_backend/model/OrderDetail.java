@@ -23,7 +23,6 @@ public class OrderDetail {
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonBackReference
     private Product product;
 
     private Double price;
