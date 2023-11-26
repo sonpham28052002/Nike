@@ -6,17 +6,21 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRef, useState } from 'react';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import { Modal, Portal, Button, PaperProvider } from 'react-native-paper';
+import { putAPI } from '../../redux-toolkit/slices';
 import Address from '../address/address';
+import { useDispatch, useSelector } from 'react-redux';
 export default function user({ navigation }) {
+  const user = useSelector(state => state.data)
   const { width, height } = Dimensions.get("window")
   const items = [require('../discover/asset/gift.png'), require('../discover/asset/running.jpg'), require('../discover/asset/running2.jpg'), require('../discover/asset/speed.jpg')]
   const animate = useRef(new Animated.Value(height * 0.6)).current
   const [expanded, setExpanded] = useState(false);
   const [textButton, setTextButton] = useState('Edit Profile')
-  const [textPhone, setTextPhone] = useState('0954522381')
-  const [textEmail, setTextEmail] = useState('son@gmail.com')
-  const [textAddress, setTextAddress] = useState('117 DHT 17, PDHT, Q12, TP HCM')
+  const [textPhone, setTextPhone] = useState(user.phone)
+  // const [textEmail, setTextEmail] = useState(user.email)
+  const [textAddress, setTextAddress] = useState(user.address)
   const [visible, setVisible] = useState(false);
+  var dispatch = useDispatch()
   return (
     <PaperProvider>
       <Portal>
@@ -24,7 +28,7 @@ export default function user({ navigation }) {
           <Address callBack={(address) => {
             setTextAddress(address)
             setVisible(false)
-          }}/>
+          }} />
         </Modal>
       </Portal>
       <LinearGradient style={{ flex: 1 }}
@@ -40,7 +44,7 @@ export default function user({ navigation }) {
                 rounded
                 source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }}
               />
-              <Text style={styles.textTitle}>Nguyễn Thanh Sơn</Text>
+              <Text style={styles.textTitle}>{user.name}</Text>
             </View>
             {
               expanded ?
@@ -58,7 +62,7 @@ export default function user({ navigation }) {
                       <MaterialIcons name="email" size={24} color="black" />
                     </View>
                     <View style={styles.viewTextInfo}>
-                      <TextInput style={styles.textSubTitle} value={textEmail} onChangeText={setTextEmail} />
+                      <Text style={styles.textSubTitle}>{user.email}</Text>
                     </View>
                   </View>
                   <View style={styles.viewInfo}>
@@ -77,7 +81,17 @@ export default function user({ navigation }) {
                     </View>
                   </View>
                   <View style={{ width: '100%', paddingTop: 20 }}>
-                    <TouchableOpacity style={styles.buttonUpdate}>
+                    <TouchableOpacity style={styles.buttonUpdate}
+                      onPress={() => {
+                        let newUser = { ...user }
+                        newUser.phone = textPhone
+                        newUser.address = textAddress
+                        dispatch(putAPI(newUser))
+                        Animated.timing(animate, { toValue: height * 0.6, duration: 500 }).start()
+                        setTextButton('Edit Profile')
+                        setExpanded(!expanded);
+                      }}
+                    >
                       <Text style={styles.textSubTitle}>Update</Text>
                     </TouchableOpacity>
                   </View>
@@ -125,7 +139,9 @@ export default function user({ navigation }) {
           </View>
 
         </Animated.View>
-        <View style={{ width: width, height: height * 0.4, marginTop: 5 }}>
+        <View style={{ width: width, height: height * 0.4, marginTop: 5 }}
+          onPress={() => navigation.navigate('Shop')}
+        >
           <SwiperFlatList
             style={{ width: width, height: '100%' }}
             autoplay
