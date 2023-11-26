@@ -1,21 +1,27 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Dropdown } from 'react-native-element-dropdown';
 import { TextField } from 'react-native-ui-lib';
 export default function address(props) {
+    const [enableText, setEnableText] = useState(false)
+    const [enableButton, setEnableButton] = useState(false)
+
     const [dataCity, setDataCity] = useState([])
     const [valueCity, setValueCity] = useState(null);
+    const [cityName, setCityName] = useState('');
     const [isFocusCity, setIsFocusCity] = useState(false);
 
     const [dataDistrict, setDataDistrict] = useState([])
     const [valueDistrict, setValueDistrict] = useState(null);
+    const [districtName, setDistrictName] = useState('');
     const [isFocusDistrict, setIsFocusDistrict] = useState(false);
 
     const [dataWard, setDataWard] = useState([])
     const [valueWard, setValueWard] = useState(null);
+    const [wardName, setWardName] = useState('');
     const [isFocusWard, setIsFocusWard] = useState(false);
 
-    const [txtInput, setTxtInput] = useState('');
+    const [textInput, setTextInput] = useState('');
     useEffect(() => {
         fetch('https://provinces.open-api.vn/api/')
             .then(response => response.json())
@@ -36,16 +42,24 @@ export default function address(props) {
                 .then(data => setDataWard(data.wards))
     }, [valueDistrict])
 
+    useEffect(() => {
+        if (valueWard)
+            setEnableText(true)
+        else
+            setEnableText(false)
+    }, [valueWard])
+
     return (
         <View style={{ width: 300, height: 250, justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.container}>
                 <View style={styles.viewInput}>
                     <TextField
                         style={styles.input}
+                        editable={enableText}
                         placeholder='Enter your address'
                         placeholderTextColor={'gray'}
-                        value={txtInput}
-                        onChangeText={setTxtInput}
+                        value={textInput}
+                        onChangeText={setTextInput}
                     />
                 </View>
                 <View style={styles.border}>
@@ -68,6 +82,7 @@ export default function address(props) {
                         onChange={item => {
                             setValueCity(item.code);
                             setIsFocusCity(false);
+                            setCityName(item.name)
                         }}
                     />
                 </View>
@@ -91,6 +106,7 @@ export default function address(props) {
                         onChange={item => {
                             setValueDistrict(item.code);
                             setIsFocusDistrict(false);
+                            setDistrictName(item.name)
                         }}
                     />
                 </View>
@@ -114,12 +130,16 @@ export default function address(props) {
                         onChange={item => {
                             setValueWard(item.code);
                             setIsFocusWard(false);
+                            setWardName(item.name)
                         }}
                     />
                 </View>
                 <View style={styles.viewButton}>
                     <TouchableOpacity style={styles.button}
-                        onPress={() => props.callBack(`${txtInput}, ${valueWard}, ${valueDistrict}, ${valueCity}`)}
+                        onPress={() => {
+                            if (textInput != '' && wardName != '' && districtName != '' && cityName != '')
+                                props.callBack(`${textInput}, ${wardName}, ${districtName}, ${cityName}`)
+                        }}
                     >
                         <Text style={styles.text}>Create Address</Text>
                     </TouchableOpacity>
