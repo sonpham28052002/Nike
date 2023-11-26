@@ -8,45 +8,43 @@ import {
 } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import { styles } from "./style";
-import { useNavigation } from "@react-navigation/core";
-export default function discover() {
-  var navigation = useNavigation()
+export default function discover({ navigation }) {
   var arr = [
     {
       id: 1,
       title: "NIKE PEGASUS TRAIL GORE-TEX",
       image: [require("./asset/running.jpg"), require("./asset/running2.jpg")],
       desc: "A waterproof GORE-TEX upper helps your feet stay dry whether you’re jogging down a rainy road or splashing through muddy trails. A flexible cuff around the ankle provides comfort and helps keep debris out.",
-      onPress: () => {
-        console.log("son");
-      },
+      // onPress: () => {
+      //   console.log("son");
+      // },
     },
     {
       id: 2,
       title: "NIKE PEGASUS TRAIL GORE-TEX",
       image: [require("./asset/speed.jpg")],
       desc: "Make it real with the Mercurial Dream Speed 7.",
-      onPress: () => {
-        console.log("son2");
-      },
+      // onPress: () => {
+      //   console.log("son2");
+      // },
     },
     {
       id: 3,
       title: "SPEED BEYOND YOUR WILDEST DREAMS",
       image: [require("./asset/gift.png")],
       desc: "This year’s gift. Next year’s greatness.",
-      onPress: () => {
-        console.log("son3");
-      },
+      // onPress: () => {
+      //   console.log("son3");
+      // },
     },
     {
       id: 4,
       title: "NIKE PEGASUS TRAIL GORE-TEX",
       image: [require("./asset/running.jpg"), require("./asset/running2.jpg")],
       desc: "",
-      onPress: () => {
-        console.log("son4");
-      },
+      // onPress: () => {
+      //   console.log("son4");
+      // },
     },
   ];
 
@@ -75,7 +73,7 @@ export default function discover() {
                 >
                   {item.desc}
                 </Text>
-                <TouchableOpacity style={styles.button} onPress={item.onPress}>
+                <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate("Shop")}>
                   <Text style={styles.textButton}>Shop</Text>
                 </TouchableOpacity>
               </View>
