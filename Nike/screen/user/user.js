@@ -1,109 +1,133 @@
-import { View, Text, TouchableOpacity, Dimensions, Animated } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, Animated } from 'react-native'
 import { Avatar } from '@rneui/themed';
 import styles from './style'
-import { FontAwesome5, EvilIcons, Foundation, AntDesign, Feather } from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome, MaterialIcons, AntDesign, Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { searchProduct } from '../../service/ProductService';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
+import { TextInput } from 'react-native';
 export default function user({ navigation }) {
-  const [items, setItems] = useState([])
-  const [color, setColor] = useState('yellow')
-  useEffect(() => {
-    searchProduct((data) => setItems(data), 'New', 10)
-  }, [])
-  const height = Dimensions.get("window").height
-  // var animate = useRef(new Animated.Value(0)).current
-  useEffect(() => {
-    const inteval = setInterval(() => {
-      setColor(color == 'red' ? 'yellow' : color == 'yellow' ? 'blue' : 'red')
-    }, 1000)
-    return () => clearInterval(inteval)
-  }, [color])
+  const { width, height } = Dimensions.get("window")
+  const items = [require('../discover/asset/gift.png'), require('../discover/asset/running.jpg'), require('../discover/asset/running2.jpg'), require('../discover/asset/speed.jpg')]
+  const animate = useRef(new Animated.Value(height * 0.6)).current
+  const [expanded, setExpanded] = useState(false);
+  const [textButton, setTextButton] = useState('Edit Profile')
+  const [textPhone, setTextPhone] = useState('0954522381')
+  const [textEmail, setTextEmail] = useState('son@gmail.com')
+  const [visible, setVisible] = useState(false);
   return (
-    <LinearGradient style={{ flex: 1, height: height }}
+    <LinearGradient style={{ flex: 1 }}
       colors={['#75f9e3', '#d8fff9']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
     >
-      <View style={{ justifyContent: "center", alignItems: "center", width: '100%', height: '60%' }}>
-        <Avatar
-          size={100}
-          rounded
-          source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }}
-        />
-        <Text style={styles.textTitle}>Nguyễn Thanh Sơn</Text>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.textSubTitle}>Edit Profile</Text>
-        </TouchableOpacity>
-        <View style={styles.viewButton}>
-          <TouchableOpacity style={styles.buttonNavigate}>
-            <FontAwesome5 name="gift" size={30} color="black" />
-            {/* <Text style={styles.textSubTitle}>Orderd</Text> */}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonNavigate}>
-            <FontAwesome5 name="gift" size={30} color="black" />
-            {/* <Text style={styles.textSubTitle}>Orderd</Text> */}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonNavigate}>
-            <AntDesign
-              name="heart"
-              size={30}
-              color={"black"}
+      <Animated.View style={{ justifyContent: "space-between", alignItems: "center", width: width, height: animate }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', paddingTop: 50 }}>
+            <Avatar
+              size={100}
+              rounded
+              source={{ uri: "https://randomuser.me/api/portraits/men/36.jpg" }}
             />
-            {/* <Text style={styles.textSubTitle}>Favorites</Text> */}
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonNavigate}>
-            <Feather name="shopping-bag" size={30} color="black" />
-            {/* <Text style={styles.textSubTitle}>Cart</Text> */}
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={{ width: '100%', height: '40%', paddingHorizontal: 10 }}>
-        <View style={{ width: '100%', height: '50%', flexDirection: 'row' }}>
-          <View style={{ width: '90%', height: '100%' }}>
-            <Foundation name="burst-new" size={height * 0.4 * 0.5 * 0.3} color={color} />
-            <SwiperFlatList
-              autoplay
-              autoplayDelay={1}
-              autoplayLoop
-              index={1}
-              data={items}
-              horizontal
-              renderItem={({ item }) => {
-                return (
-                  <View style={{ width: 100, height: height * 0.4 * 0.5 * 0.68, borderWidth: 1 }}>
-                    <Text>{item.name}</Text>
-                  </View>
-                )
-              }} />
+            <Text style={styles.textTitle}>Nguyễn Thanh Sơn</Text>
           </View>
-          <TouchableOpacity style={{ width: '10%', height: '67%', alignSelf: 'flex-end', justifyContent: 'center', alignItems: 'center' }}>
-            <EvilIcons name="arrow-right" size={40} color="black" />
-          </TouchableOpacity>
-        </View>
-        <View style={{ width: '100%', height: '50%', flexDirection: 'row' }}>
-          <View style={{ width: '90%', height: '100%' }}>
-            <Foundation name="burst-sale" size={height * 0.4 * 0.5 * 0.3} color={color} />
-            <SwiperFlatList
-              autoplay
-              autoplayDelay={1}
-              autoplayLoop
-              index={1}
-              data={items}
-              horizontal
-              renderItem={({ item }) => {
-                return (
-                  <View style={{ width: 100, height: height * 0.4 * 0.5 * 0.68, borderWidth: 1 }}>
-                    <Text>{item.name}</Text>
+          {
+            expanded ?
+              <View style={{ width: width * 0.8 }}>
+                <View style={styles.viewInfo}>
+                  <View style={styles.viewIcon}>
+                    <FontAwesome name="phone" size={30} color="black" />
                   </View>
-                )
-              }} />
-          </View>
-          <TouchableOpacity style={{ width: '10%', height: '67%', alignSelf: 'flex-end', justifyContent: 'center', alignItems: 'center' }}>
-            <EvilIcons name="arrow-right" size={40} color="black" />
-          </TouchableOpacity>
+                  <View style={styles.viewTextInfo}>
+                    <TextInput style={styles.textSubTitle} value={textPhone} onChangeText={setTextPhone} />
+                  </View>
+                </View>
+                <View style={styles.viewInfo}>
+                  <View style={styles.viewIcon}>
+                    <MaterialIcons name="email" size={24} color="black" />
+                  </View>
+                  <View style={styles.viewTextInfo}>
+                    <TextInput style={styles.textSubTitle} value={textEmail} onChangeText={setTextEmail} />
+                  </View>
+                </View>
+                <View style={styles.viewInfo}>
+                  <View style={styles.viewIcon}>
+                    <FontAwesome5 name="address-card" size={24} color="black" />
+                  </View>
+                  <View style={[styles.viewTextInfo, { flexDirection: 'row' }]}>
+                    <View style={{ width: '85%' }}>
+                      <Text style={styles.textSubTitle}>117 DHT 17, PDHT, Q12, TP HCM</Text>
+                    </View>
+                    <TouchableOpacity style={{ width: '10%', paddingTop: 15 }}>
+                      <FontAwesome name="edit" size={40} color="red" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+                <View style={{ width: '100%', paddingTop: 20 }}>
+                  <TouchableOpacity style={styles.buttonUpdate}>
+                    <Text style={styles.textSubTitle}>Update</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              : null
+          }
+
         </View>
+        <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity style={styles.button}
+            onPress={() => {
+              if (!expanded) {
+                Animated.timing(animate, { toValue: height, duration: 500 }).start()
+                setTextButton('Cancel')
+                setTimeout(() => {
+                  setExpanded(!expanded);
+                }, 500);
+              }
+              else {
+                Animated.timing(animate, { toValue: height * 0.6, duration: 500 }).start()
+                setTextButton('Edit Profile')
+                setExpanded(!expanded);
+              }
+            }}>
+            <Text style={styles.textSubTitle}
+            >{textButton}</Text>
+          </TouchableOpacity>
+          <View style={styles.viewButton}>
+            <TouchableOpacity style={styles.buttonNavigate}>
+              <FontAwesome5 name="gift" size={30} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonNavigate}>
+              <FontAwesome5 name="gift" size={30} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonNavigate}>
+              <AntDesign
+                name="heart"
+                size={30}
+                color={"black"}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonNavigate}>
+              <Feather name="shopping-bag" size={30} color="black" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+      </Animated.View>
+      <View style={{ width: width, height: height * 0.4, marginTop: 5 }}>
+        <SwiperFlatList
+          style={{ width: width, height: '100%' }}
+          autoplay
+          autoplayDelay={2}
+          autoplayLoop
+          index={0}
+          data={items}
+          horizontal
+          showPagination
+          renderItem={({ item }) => {
+            return (
+              <Image resizeMode='cover' style={{ width: width, 'height': height * 0.4 }} source={item} />
+            )
+          }} />
       </View>
     </LinearGradient>
   );
