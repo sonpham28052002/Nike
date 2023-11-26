@@ -85,7 +85,8 @@ const App = ({ navigation }) => {
       </View>
       <View
         style={{
-          height: 110,
+          height: 100,
+          marginTop:10,
           width: "100%",
           alignItems: "center",
           justifyContent: "flex-start",

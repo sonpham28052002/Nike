@@ -63,7 +63,7 @@ export default function productItem(props) {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <Text style={{ fontWeight: "600", color: "gray" }}>
-              Size: {38.5}
+              Size: {bag.size}
             </Text>
             <Text style={{ fontWeight: "600", color: "gray" }}>
               Quantity: {bag.quantity}

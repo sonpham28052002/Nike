@@ -1,21 +1,26 @@
 package vn.edu.iuh.fit.nike_backend.Resources;
 
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.iuh.fit.nike_backend.config.Config_VNPAY;
+import vn.edu.iuh.fit.nike_backend.dto.UrlPayment;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-//@CrossOrigin(HostFrontEnd.host)
+@CrossOrigin(HostFrontEnd.host)
 @RestController
 @RequestMapping("/payment")
 public class VNPAYResource {
     @GetMapping("/create_payment/amount={amount}&order_id={order_id}")
-    public String createPayment(@PathVariable long amount , @PathVariable long order_id , Model model) throws UnsupportedEncodingException {
+    public ResponseEntity<?> createPayment(@PathVariable long amount , @PathVariable long order_id , Model model) throws UnsupportedEncodingException {
         String urlReturn ="http://localhost:8080/";
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
@@ -84,8 +89,14 @@ public class VNPAYResource {
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config_VNPAY.vnp_PayUrl + "?" + queryUrl;
         System.out.println(paymentUrl);
-        model.addAttribute("amount", amount);
-        model.addAttribute("order_id",order_id);
-        return paymentUrl;
+
+        return ResponseEntity.status(HttpStatus.OK).body(new UrlPayment(paymentUrl));
+    }
+
+    @GetMapping
+    public String susseccPayment(HttpServletRequest httpRequest, Model model){
+        model.addAttribute("amount", httpRequest.getParameter("vnp_Amount"));
+        model.addAttribute("order_id",httpRequest.getParameter("Thanh_Toan_Don_hang_12"));
+        return "a";
     }
 }

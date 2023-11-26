@@ -19,10 +19,7 @@ export default function app() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          headerStyle: { height: 50, backgroundColor: "white" },
-        }}
+        screenOptions={{ headerShown: false, headerStyle: { height: 50 } }}
       >
         <Stack.Screen component={Splash} name="splash_screen" />
         <Stack.Screen component={sign_in} name="signin" />
