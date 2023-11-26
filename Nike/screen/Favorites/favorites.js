@@ -5,6 +5,7 @@ import React from "react";
 import { getProductByID } from "../../service/ProductService";
 export default function favorites() {
   var user = useSelector((state) => state.data);
+  console.log(user)
   var [listProduct, setListProduct] = React.useState([]);
   var loading = false;
   React.useEffect(() => {

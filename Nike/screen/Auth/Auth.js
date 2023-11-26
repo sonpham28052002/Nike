@@ -13,13 +13,16 @@ import sneakerWeek from "../shop/sneakerWeek.js";
 import favorites from "../Favorites/favorites.js";
 import bestSeller from "../shop/bestSeller.js";
 import productDetail from "../product_detail/product_detail.js";
+import checkout from "../checkout/checkout.js";
 import user from "../user/user.js";
 var Stack = createNativeStackNavigator();
 
 export default function app() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false, headerStyle: {height: 50} }}>
+      <Stack.Navigator
+        screenOptions={{ headerShown: false, headerStyle: { height: 50 } }}
+      >
         <Stack.Screen component={Splash} name="splash_screen" />
         <Stack.Screen component={sign_in} name="signin" />
         <Stack.Screen component={sign_up} name="signup" />
@@ -38,6 +41,11 @@ export default function app() {
           component={cart}
           name="cart"
           options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          component={checkout}
+          name="checkout"
+          options={{ headerShown: true, headerTitle: "Payment" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

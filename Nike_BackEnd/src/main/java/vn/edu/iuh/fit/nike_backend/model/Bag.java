@@ -27,6 +27,8 @@ public class Bag {
 
     @Column
     private int quantity;
+
+    @Id
     @Column
     private float size;
 }

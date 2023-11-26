@@ -21,14 +21,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAPI, putAPI } from "../../redux-toolkit/slices";
 import { calcStar } from "../../function/calculator";
 import { putBag } from "../../service/UserService";
+import { searchProduct } from "../../service/ProductService";
 
 //<==================Import======================================>
 export default function App({ navigation, route }) {
   var user = useSelector((state) => state.data);
   var dispatch = useDispatch();
-  var product = route.params;
-  console.log("ádasdasd");
-  console.log(product);
+  var [product,setProduct] = React.useState(route.params);
+
   const { width, height } = Dimensions.get("window");
   var start_feelBack = calcStar(product.feedbacks);
   //<=======================handle==========================>
@@ -40,7 +40,12 @@ export default function App({ navigation, route }) {
     style: "currency",
     currency: "VND",
   });
-  var product_color = [1, 13, 18, 19];
+  var [product_color,setProductColor] = React.useState([]);
+  React.useEffect(()=>{
+    searchProduct((data)=>{
+      setProductColor(data)
+    },product.name,10)
+  },[])
   var [selectColor, setSelectColor] = React.useState(1);
   var [quantity, setQuantity] = React.useState(1);
   var [selectSize, setSelectSize] = React.useState(product.productSizes[0].id);
@@ -265,14 +270,18 @@ export default function App({ navigation, route }) {
               style={{ width: "100%" }}
               data={product_color}
               horizontal={true}
-              keyExtractor={(item) => item}
+              keyExtractor={(item) => item.id}
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => {
                 return (
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                  onPress={()=>{
+                    setProduct(item)
+                  }}
+                  >
                     <ImageBackground
                       style={[style.itemShadown, style.imageProduct, {}]}
-                      source={getImage(item, "3.png")}
+                      source={getImage(item.id, "3.png")}
                       resizeMode="cover"
                     />
                   </TouchableOpacity>

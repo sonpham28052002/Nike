@@ -1,24 +1,17 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  FlatList,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-// import { user } from "../../user";
 import Cart_item from "./cart_item";
 import { ScrollView } from "react-native";
-import { useSelector } from "react-redux";
-const App = () => {
-  var user = useSelector((state)=> state.data)
+import { useDispatch, useSelector } from "react-redux";
+import { getAPI } from "../../redux-toolkit/slices";
+const App = ({ navigation }) => {
+  var user = useSelector((state) => state.data);
+  useDispatch(getAPI(user.id))
   console.log(user.bags);
   var [bags, setBags] = React.useState(user.bags);
   var [selectCheckout, setSelectCheckout] = React.useState([]);
   var [total, setTotal] = React.useState(0);
-  const windowHeight = Dimensions.get("window").height;
-
   React.useEffect(() => {
     console.log("selectCheckout");
     console.log(selectCheckout);
@@ -28,14 +21,14 @@ const App = () => {
           selectCheckout[0].product.price * selectCheckout[0].quantity;
         setTotal(total);
       } else {
-        let total = 0
-        selectCheckout.map((item)=> {
-          total+=item.product.price * item.quantity
-        })
+        let total = 0;
+        selectCheckout.map((item) => {
+          total += item.product.price * item.quantity;
+        });
         setTotal(total);
       }
-    }else{
-      setTotal(0)
+    } else {
+      setTotal(0);
     }
   }, [selectCheckout]);
   var totalView = total.toLocaleString("vi-VN", {
@@ -44,9 +37,9 @@ const App = () => {
   });
   let i = 0;
   return (
-    <View style={{height:"100%" }}>
-      <View style={{maxHeight:585}}>
-        <ScrollView style={{ padding: 10, }}>
+    <View style={{ height: "100%" }}>
+      <View style={{ maxHeight: 585, height: 585 }}>
+        <ScrollView style={{ padding: 10 }}>
           <FlatList
             data={bags}
             keyExtractor={() => {
@@ -87,7 +80,8 @@ const App = () => {
       </View>
       <View
         style={{
-          height: 110,
+          height: 100,
+          marginTop: 10,
           width: "100%",
           alignItems: "center",
           justifyContent: "flex-start",
@@ -124,6 +118,14 @@ const App = () => {
             alignItems: "center",
             justifyContent: "center",
             flexDirection: "row",
+          }}
+          onPress={() => {
+            if (selectCheckout.length != 0) {
+              navigation.navigate("checkout", {
+                bags: selectCheckout,
+                total: total,
+              });
+            }
           }}
         >
           <FontAwesome5 name="cart-arrow-down" size={24} color="white" />

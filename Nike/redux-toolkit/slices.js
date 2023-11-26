@@ -12,7 +12,7 @@ var getAPI = createAsyncThunk(
       } else {
         data.favorites = data.favorites.split(",").map(Number);
       }
-
+      console.log("data");
       console.log(data);
       return data;
     } catch (error) {
