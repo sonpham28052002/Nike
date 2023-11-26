@@ -122,24 +122,26 @@ export default function user({ navigation }) {
               <TouchableOpacity style={styles.buttonNavigate}>
                 <FontAwesome5 name="gift" size={30} color="black" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonNavigate}>
-                <FontAwesome5 name="gift" size={30} color="black" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonNavigate}>
+              <TouchableOpacity style={styles.buttonNavigate}
+                onPress={() => navigation.navigate('Shop', { screen: 'Favorites' })}
+
+              >
                 <AntDesign
                   name="heart"
                   size={30}
                   color={"black"}
                 />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonNavigate}>
+              <TouchableOpacity style={styles.buttonNavigate}
+                onPress={() => navigation.navigate('Shop', { screen: 'Cart' })}
+              >
                 <Feather name="shopping-bag" size={30} color="black" />
               </TouchableOpacity>
             </View>
           </View>
 
         </Animated.View>
-        <View style={{ width: width, height: height * 0.4, marginTop: 5 }}
+        <TouchableOpacity style={{ width: width, height: height * 0.4, marginTop: 5 }}
           onPress={() => navigation.navigate('Shop')}
         >
           <SwiperFlatList
@@ -156,7 +158,7 @@ export default function user({ navigation }) {
                 <Image resizeMode='cover' style={{ width: width, 'height': height * 0.4 }} source={item} />
               )
             }} />
-        </View>
+        </TouchableOpacity>
       </LinearGradient>
     </PaperProvider>
   );

@@ -7,8 +7,10 @@ import forgot from "../forgot/forgot.js";
 import drawer from "./drawer.js";
 import card from "../cardProduct/card.js";
 import cart from "../cart/cart.js";
+import shopHome from "../shop/shopHome.js";
 import discover from "../discover/discover.js";
 import sneakerWeek from "../shop/sneakerWeek.js";
+import favorites from "../Favorites/favorites.js";
 import bestSeller from "../shop/bestSeller.js";
 import productDetail from "../product_detail/product_detail.js";
 import user from "../user/user.js";
@@ -21,6 +23,8 @@ export default function app() {
         <Stack.Screen component={Splash} name="splash_screen" />
         <Stack.Screen component={sign_in} name="signin" />
         <Stack.Screen component={sign_up} name="signup" />
+        <Stack.Screen component={favorites} name="favorite" />
+        <Stack.Screen component={shopHome} name="Shop Home" />
         <Stack.Screen component={forgot} name="forgot" />
         <Stack.Screen
           component={user}

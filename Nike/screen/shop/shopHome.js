@@ -19,6 +19,16 @@ import card from '../cardProduct/card.js'
 
 const Stack = createNativeStackNavigator();
 const shopHome = ({ navigation, route }) => {
+  if (route.params.screen){
+    if(route.params.screen == 'Favorites'){
+      route.params.screen = undefined
+      navigation.navigate('Favorites')
+    }else{
+      route.params.screen = undefined
+      navigation.navigate('Cart')
+    }
+
+  }
   //user
   const navigate = useNavigation()
   return (
@@ -31,7 +41,7 @@ const shopHome = ({ navigation, route }) => {
           return (
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
-              onPress={()=>navigate.navigate("Search", navigation)}>
+                onPress={() => navigate.navigate("Search", navigation)}>
                 <FontAwesome style={{}} name="search" size={24} color="black" />
               </TouchableOpacity>
               <TouchableOpacity style={{ marginHorizontal: 20 }}>
@@ -54,7 +64,7 @@ const shopHome = ({ navigation, route }) => {
         options={{ headerShown: false }}
       />
       {/*  The week's highlight */}
-      <Stack.Screen name="Sneakers of the Week" component={SneakerWeek}/>
+      <Stack.Screen name="Sneakers of the Week" component={SneakerWeek} />
       <Stack.Screen name="Best Sellers" component={BestSeller} />
       <Stack.Screen name="Discount" component={Discount} />
       <Stack.Screen name="Shop All" component={ShopAll} />
