@@ -4,6 +4,7 @@ import { setOptionDrawer } from './function';
 import { getAllProduct } from '../../service/ProductService';
 import styles from './style';
 import { searchAndSort } from './function';
+import { TextField } from 'react-native-ui-lib';
 const search = ({ navigation, route }) => {
     var [items, setItems] = useState([])
     const [dataSearch, setDataSearch] = useState({})
@@ -15,7 +16,7 @@ const search = ({ navigation, route }) => {
         setOptionDrawer(navigation, route.params, () => {
             return (
                 <View style={{ width: '100%' }}>
-                    <TextInput style={styles.input}
+                    <TextField style={styles.input}
                         onChangeText={setText}
                         placeholder='Search Products'
                         placeholderTextColor={'gray'}

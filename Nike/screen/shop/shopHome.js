@@ -21,7 +21,6 @@ const Stack = createNativeStackNavigator();
 const shopHome = ({ navigation, route }) => {
   //user
   const navigate = useNavigation()
-  console.log(navigation);
   return (
     // <NavigationContainer>
     <Stack.Navigator
