@@ -40,7 +40,7 @@ export default function sign_in({ navigation }) {
         }
         dispatch(getAPI(response.user.uid));
         setLoading(true);
-        navigation.navigate("Home")
+        navigation.navigate("Home");
       } catch (error) {
         setVisibleErrorPass(true);
         setLoading(false);
@@ -153,7 +153,7 @@ export default function sign_in({ navigation }) {
           )}
         </TouchableOpacity>
         <Text style={{ textAlign: "center" }}>
-          Create new account?
+          Create new account
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("signup");
