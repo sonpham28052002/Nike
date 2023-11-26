@@ -31,4 +31,12 @@ public class OrderDetail {
 
     private Double discount;
 
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", discount=" + discount +
+                '}';
+    }
 }

@@ -37,10 +37,11 @@ export default function sign_in({ navigation }) {
         );
         if (!response.user.emailVerified) {
           setVisibleError(true);
+        } else {
+          dispatch(getAPI(response.user.uid));
+          setLoading(true);
+          navigation.navigate("Home");
         }
-        dispatch(getAPI(response.user.uid));
-        setLoading(true);
-        navigation.navigate("Home");
       } catch (error) {
         setVisibleErrorPass(true);
         setLoading(false);

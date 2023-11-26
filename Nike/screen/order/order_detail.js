@@ -2,11 +2,11 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import { getImage } from "../../function/getImage";
 
-export default function productItem(props) {
+export default function orderdetail(props) {
   var [bag, setBag] = React.useState(props.value);
-  var [product, setProduct] = React.useState(bag.product);
+  var [product, setProduct] = React.useState(props.value.product);
 
-  var price = product.price.toLocaleString("vi-VN", {
+  var price = props.value.price.toLocaleString("vi-VN", {
     style: "currency",
     currency: "VND",
   });
@@ -18,8 +18,8 @@ export default function productItem(props) {
     currency: "VND",
   });
   var total = (
-    (product.price - product.price * (product.discount / 100)) *
-    bag.quantity
+    (props.value.price - props.value.price * (props.value.discount / 100)) *
+    props.value.quantity
   ).toLocaleString("vi-VN", {
     style: "currency",
     currency: "VND",
@@ -63,10 +63,7 @@ export default function productItem(props) {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <Text style={{ fontWeight: "600", color: "gray" }}>
-              Size: {bag.size}
-            </Text>
-            <Text style={{ fontWeight: "600", color: "gray" }}>
-              Quantity: {bag.quantity}
+              Quantity: {props.value.quantity}
             </Text>
           </View>
           <View
@@ -79,7 +76,7 @@ export default function productItem(props) {
             <Text style={{ fontWeight: "bold", fontSize: 20 }}>
               {priceDiscount}
             </Text>
-            {product.discount == 0 || (
+            {props.value.discount == 0 || (
               <Text
                 style={{
                   fontWeight: "500",
@@ -88,11 +85,11 @@ export default function productItem(props) {
                   color: "green",
                 }}
               >
-                - {product.discount} %
+                - {props.value.discount} %
               </Text>
             )}
           </View>
-          {product.discount == 0 || (
+          {props.value.discount == 0 || (
             <Text
               style={{
                 fontWeight: "500",
