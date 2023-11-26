@@ -14,4 +14,5 @@ import java.io.Serializable;
 public class Bag_ID implements Serializable {
     private Product product;
     private User user;
+    private float size;
 }

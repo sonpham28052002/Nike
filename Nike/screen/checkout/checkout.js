@@ -1,7 +1,7 @@
 import React from "react";
 import ProductItem from "./product_item";
 import { RadioGroup, RadioButton } from "react-native-ui-lib";
-import { user } from "../../user";
+// import { user } from "../../user";
 import {
   View,
   Button,
@@ -11,20 +11,21 @@ import {
   Dimensions,
 } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
-export default function checkout() {
+export default function checkout({ navigation, route }) {
   const windowHeight = Dimensions.get("window").height;
-  console.log(windowHeight);
-
-  console.log(user);
+  console.log(route.params?.bags);
+  var [bags, setBags] = React.useState(route.params?.bags);
+  var total = route.params?.total;
+  console.log(total);
   var ref = React.useRef();
   var [check, setCheck] = React.useState(true);
   let i = 0;
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View style={{ flex: 1, height: "100%" }}>
-        <View style={{ maxHeight: 645, paddingHorizontal: 10 }}>
+        <View style={{ maxHeight: 595, height: 595, paddingHorizontal: 10 }}>
           <FlatList
-            data={user.bags}
+            data={bags}
             keyExtractor={() => {
               return i++;
             }}
@@ -56,7 +57,11 @@ export default function checkout() {
           <Text
             style={{ fontSize: 20, fontStyle: "italic", fontWeight: "600" }}
           >
-            Total: 100,000,000 VNĐ
+            Total:{" "}
+            {total.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })}
           </Text>
           <TouchableOpacity
             style={{
@@ -97,7 +102,11 @@ export default function checkout() {
         }}
       >
         <Text style={{ fontSize: 20, fontStyle: "italic", fontWeight: "600" }}>
-          Total: 100,000,000 VNĐ
+          Total:{" "}
+          {total.toLocaleString("vi-VN", {
+            style: "currency",
+            currency: "VND",
+          })}
         </Text>
         <RadioGroup
           initialValue={check}

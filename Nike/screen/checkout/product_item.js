@@ -37,7 +37,9 @@ export default function productItem(props) {
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 15,
-        marginVertical:5
+        marginVertical:5,
+        borderLeftWidth:1,
+        borderRightWidth:1,
       }}
     >
       <View
