@@ -1,22 +1,17 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  FlatList,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Cart_item from "./cart_item";
 import { ScrollView } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAPI } from "../../redux-toolkit/slices";
 const App = ({ navigation }) => {
   var user = useSelector((state) => state.data);
+  useDispatch(getAPI(user.id))
   console.log(user.bags);
   var [bags, setBags] = React.useState(user.bags);
   var [selectCheckout, setSelectCheckout] = React.useState([]);
   var [total, setTotal] = React.useState(0);
-
   React.useEffect(() => {
     console.log("selectCheckout");
     console.log(selectCheckout);
@@ -43,7 +38,7 @@ const App = ({ navigation }) => {
   let i = 0;
   return (
     <View style={{ height: "100%" }}>
-      <View style={{ maxHeight: 585,height:585 }}>
+      <View style={{ maxHeight: 585, height: 585 }}>
         <ScrollView style={{ padding: 10 }}>
           <FlatList
             data={bags}
@@ -86,7 +81,7 @@ const App = ({ navigation }) => {
       <View
         style={{
           height: 100,
-          marginTop:10,
+          marginTop: 10,
           width: "100%",
           alignItems: "center",
           justifyContent: "flex-start",

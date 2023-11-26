@@ -5,7 +5,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.iuh.fit.nike_backend.enums.OrderStatus;
 import vn.edu.iuh.fit.nike_backend.model.Order;
+import vn.edu.iuh.fit.nike_backend.model.OrderDetail;
 import vn.edu.iuh.fit.nike_backend.model.User;
+import vn.edu.iuh.fit.nike_backend.respositories.OrderDetailRepository;
 import vn.edu.iuh.fit.nike_backend.respositories.OrderRepository;
 import vn.edu.iuh.fit.nike_backend.respositories.UserRepository;
 

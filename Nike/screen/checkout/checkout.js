@@ -15,7 +15,7 @@ import styles from "./style";
 import { Dialog } from "@rneui/themed";
 import { useDispatch, useSelector } from "react-redux";
 import Address from "../address/address";
-import { postOrder } from "../../service/OrderService";
+import { postOrder, postOrderDetail } from "../../service/OrderService";
 import { getAPI } from "../../redux-toolkit/slices";
 import { deleteBag } from "../../service/BagResource";
 export default function checkout({ navigation, route }) {
@@ -130,27 +130,28 @@ export default function checkout({ navigation, route }) {
             style={{ borderRadius: 50, width: 400 }}
             onPress={() => {
               if (address != null) {
-                let order_detail = [];
-                bags.map((item) => {
-                  order_detail.push({
-                    product: item.product,
-                    quantity: 5,
-                    price: item.product.price,
-                    discount: item.product.discount,
-                  });
-                });
                 let order = {
                   user: {
                     id: user.id,
                   },
                   address: address,
                   paid: false,
-                  orderDetails: order_detail,
                 };
 
                 postOrder((data) => {
-                  let NewUser = { ...user };
                   if (data != undefined) {
+                    bags.map((item) => {
+                      postOrderDetail(
+                        (data) => {},
+                        {
+                          quantity: item.quantity,
+                          price: item.product.price,
+                          discount: item.product.discount,
+                        },
+                        data.id,
+                        item.product.id
+                      );
+                    });
                     if (check) {
                       fetch(
                         `http://localhost:8080/payment/create_payment/amount=${total}&order_id=${data.id}`
@@ -160,11 +161,13 @@ export default function checkout({ navigation, route }) {
                           setUrlPayment(a.urlPayment);
                         });
                     }
-                    dispatch(getAPI(user.id));
-                    bags.map((item)=>{
-                      deleteBag((data)=>{},item, user.id)
-                    })
-                    
+                    bags.map((item) => {
+                      deleteBag(
+                        (data) => dispatch(getAPI(user.id)),
+                        item,
+                        user.id
+                      );
+                    });
                     setnotifiSuccess(true);
                   } else {
                     setnotifiFail(!notifiFail);
@@ -214,13 +217,13 @@ export default function checkout({ navigation, route }) {
           onPress={() => {
             {
               !check || Linking.openURL(urlPayment);
-              navigation.navigate("home");
               setnotifiSuccess(!notifiSuccess);
-              ref.current.clone();
+              ref.current.close();
+              navigation.navigate("signin");
             }
-            navigation.navigate("home");
             setnotifiSuccess(!notifiSuccess);
-            ref.current.clone();
+            ref.current.close();
+            navigation.navigate("signin");
           }}
         />
       </Dialog>
@@ -228,7 +231,7 @@ export default function checkout({ navigation, route }) {
         overlayStyle={{ borderRadius: 20 }}
         isVisible={notifiFail}
         onBackdropPress={() => {
-          ref.current.clone()
+          ref.current.clone();
           setnotifiFail(!notifiFail);
         }}
       >

@@ -15,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Order {
     @Id
     @Column(name = "order_id")
@@ -37,7 +38,7 @@ public class Order {
     @Column
     private LocalDate order_date;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     @Column(name = "order_details")
     @JsonManagedReference
     private List<OrderDetail> orderDetails;
